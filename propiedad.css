@@ -1,0 +1,116 @@
+/* =========================================
+   DISEÑO PÁGINA DE PROPIEDAD INDIVIDUAL
+========================================= */
+
+.propiedad-detalle-section {
+    padding: 60px 0;
+}
+
+.cabecera-propiedad h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333; 
+}
+
+.cabecera-propiedad .ubicacion {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.galeria-propiedad .img-principal {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.grid-propiedad {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.detalles-texto h2, .detalles-texto h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.detalles-texto p {
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.lista-caracteristicas {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.lista-caracteristicas li {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.tarjeta-precio {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.precio-usd {
+    font-size: 2.2rem;
+    margin: 0;
+    color: #333;
+}
+
+.precio-cop {
+    font-size: 1.2rem;
+    color: #888;
+    margin: 5px 0 20px 0;
+}
+
+.tarjeta-precio hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.info-asesor {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.btn-contacto {
+    display: block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .grid-propiedad {
+        grid-template-columns: 1fr;
+    }
+    .galeria-propiedad .img-principal {
+        max-height: 300px;
+    }
+    .lista-caracteristicas {
+        grid-template-columns: 1fr;
+    }
+}
