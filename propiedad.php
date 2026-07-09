@@ -51,10 +51,20 @@ $resultado_fotos = $conn->query($sql_fotos);
 <body>
     <header>
         <div class="container">
-            <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
-                <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
-                <span style="font-size: 24px; font-weight: bold; color: #008080;">Palomino Prime</span>
-            </a>
+        <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
+    
+    <picture>
+        <!-- Pantallas medianas y grandes (Tablets y Escritorio: 768px o más) -->
+        <source media="(min-width: 768px)" srcset="img/palomino-LOGO-MAR-Y-RIO.jpg">
+        
+        <!-- Pantallas pequeñas (Celulares: se carga por defecto) -->
+        <img src="img/palomino.jpg" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
+    </picture>
+    
+    <!-- Texto de la marca -->
+   
+
+</a>
             
             <nav>
                 <ul>
