@@ -2,7 +2,7 @@
 // 1. CONEXIÓN A LA BASE DE DATOS (Ajusta con tus datos reales de Hostinger)
 $host = "localhost"; // O el servidor de Hostinger
 $user = "u166935491_admin";
-$pass = "Mz61161621";
+$pass = "cS)Au4-kA2dF";
 $db = "u166935491_palominoprime";
 
 $conn = new mysqli($host, $user, $pass, $db);
