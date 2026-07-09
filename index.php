@@ -9,8 +9,9 @@
 <body>
     <header>
         <div class="container">
-        <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 10px;">
-    <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 60px !important; width: auto !important; object-fit: contain !important; display: block !important;">
+        <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
+    <!-- Aumentamos el max-height a 100px -->
+    <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
     
     <span style="font-size: 24px; font-weight: bold; color: #008080;">Palomino Prime</span>
 </a>

@@ -37,9 +37,9 @@ $resultado_fotos = $conn->query($sql_fotos);
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="propiedad.css">
     <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
-<link rel="stylesheet" href="propiedad.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="propiedad.css?v=<?= time(); ?>">
 
-<style>
+    <style>
         header {
             position: static !important;
             box-shadow: none !important;
@@ -47,21 +47,22 @@ $resultado_fotos = $conn->query($sql_fotos);
             padding: 0 !important;
         }
     </style>
-
 </head>
 <body>
     <header>
         <div class="container">
-            <a href="index.php" class="logo">Palomino Prime</a>
+            <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
+                <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
+                <span style="font-size: 24px; font-weight: bold; color: #008080;">Palomino Prime</span>
+            </a>
+            
             <nav>
                 <ul>
-                <ul>
                     <li><a href="index.php">INICIO</a></li>
-                    <li><a href="#">NOSOTROS</a></li>
-                    <li><a href="propiedad.php">PROPIEDADES</a></li>
-                    <li><a href="#">PALOMINO</a></li>
-                    <li><a href="#">CONTACTO</a></li>
-                </ul>
+                    <li><a href="index.php#nosotros">NOSOTROS</a></li>
+                    <li><a href="index.php#propiedades">PROPIEDADES</a></li>
+                    <li><a href="index.php#palomino">PALOMINO</a></li>
+                    <li><a href="index.php#contacto">CONTACTO</a></li>
                 </ul>
             </nav>
         </div>
@@ -69,14 +70,14 @@ $resultado_fotos = $conn->query($sql_fotos);
 
     <main class="contenedor-principal">
         
-    <div class="propiedad-header">
-    <h1><?= htmlspecialchars($propiedad['titulo']) ?></h1>
-    <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
-</div>
+        <div class="propiedad-header">
+            <h1><?= htmlspecialchars($propiedad['titulo']) ?></h1>
+            <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
+        </div>
 
         <section class="carrusel-contenedor">
             <div class="swiper miCarrusel">
-            <div class="swiper-wrapper">
+                <div class="swiper-wrapper">
                     <?php
                     // 1. Siempre mostramos la imagen principal como el primer slide
                     echo '<div class="swiper-slide">';
