@@ -12,9 +12,9 @@
             <a href="index.html" class="logo">Palomino Prime</a>
             <nav>
                 <ul>
-                    <li><a href="index.html">INICIO</a></li>
+                    <li><a href="index.php">INICIO</a></li>
                     <li><a href="#">NOSOTROS</a></li>
-                    <li><a href="propiedad.html">PROPIEDADES</a></li>
+                    <li><a href="propiedad.php">PROPIEDADES</a></li>
                     <li><a href="#">PALOMINO</a></li>
                     <li><a href="#">CONTACTO</a></li>
                 </ul>

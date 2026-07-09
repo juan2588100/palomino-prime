@@ -55,9 +55,13 @@ $resultado_fotos = $conn->query($sql_fotos);
             <a href="index.php" class="logo">Palomino Prime</a>
             <nav>
                 <ul>
+                <ul>
                     <li><a href="index.php">INICIO</a></li>
-                    <li><a href="#">PROPIEDADES</a></li>
+                    <li><a href="#">NOSOTROS</a></li>
+                    <li><a href="propiedad.php">PROPIEDADES</a></li>
+                    <li><a href="#">PALOMINO</a></li>
                     <li><a href="#">CONTACTO</a></li>
+                </ul>
                 </ul>
             </nav>
         </div>
