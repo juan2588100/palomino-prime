@@ -53,10 +53,10 @@ $resultado_fotos = $conn->query($sql_fotos);
 
     <main class="contenedor-principal">
         
-        <header class="propiedad-header">
-            <h1><?= htmlspecialchars($propiedad['titulo']) ?></h1>
-            <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
-        </header>
+    <div class="propiedad-header">
+    <h1><?= htmlspecialchars($propiedad['titulo']) ?></h1>
+    <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
+</div>
 
         <section class="carrusel-contenedor">
             <div class="swiper miCarrusel">
