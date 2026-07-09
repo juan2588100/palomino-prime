@@ -45,6 +45,7 @@
                         <p class="price">$180,000 USD</p>
                         <p class="location">Ubicación: Palomino Prime</p>
                         <a href="propiedad.php?id=1" class="btn btn-secondary">MÁS DETALLES</a>
+                        
                     </div>
                     
                     <div class="property-card">
