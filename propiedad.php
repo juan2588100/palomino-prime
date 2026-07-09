@@ -70,7 +70,7 @@ $resultado_fotos = $conn->query($sql_fotos);
                 <ul>
                     <li><a href="index.php">INICIO</a></li>
                     <li><a href="index.php#nosotros">NOSOTROS</a></li>
-                    <li><a href="index.php#propiedades">PROPIEDADES</a></li>
+                    <li><a href="propiedades.php">PROPIEDADES</a></li>
                     <li><a href="index.php#palomino">PALOMINO</a></li>
                     <li><a href="index.php#contacto">CONTACTO</a></li>
                 </ul>

@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href="index.php">INICIO</a></li>
                     <li><a href="#">NOSOTROS</a></li>
-                    <li><a href="propiedad.php">PROPIEDADES</a></li>
+                    <li><a href="propiedades.php">PROPIEDADES</a></li>
                     <li><a href="#">PALOMINO</a></li>
                     <li><a href="#">CONTACTO</a></li>
                 </ul>
