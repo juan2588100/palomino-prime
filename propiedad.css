@@ -71,7 +71,7 @@
 }
 
 /* Tarjeta Lateral Sticky */
-.sticky-sidebar { position: sticky; top: 30px; }
+.sticky-sidebar { position: static; top: 30px; }
 .tarjeta-reserva {
     background: #fff;
     padding: 30px;
