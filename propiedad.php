@@ -60,20 +60,20 @@ $resultado_fotos = $conn->query($sql_fotos);
 
         <section class="carrusel-contenedor">
             <div class="swiper miCarrusel">
-                <div class="swiper-wrapper">
+            <div class="swiper-wrapper">
                     <?php
-                    // Recorremos las fotos obtenidas de la tabla galeria_fotos
+                    // 1. Siempre mostramos la imagen principal como el primer slide
+                    echo '<div class="swiper-slide">';
+                    echo '<img src="' . htmlspecialchars($propiedad['imagen_principal']) . '" alt="Vista principal">';
+                    echo '</div>';
+
+                    // 2. Luego recorremos y agregamos las fotos adicionales de la galería (si existen)
                     if ($resultado_fotos->num_rows > 0) {
                         while($foto = $resultado_fotos->fetch_assoc()) {
                             echo '<div class="swiper-slide">';
                             echo '<img src="' . htmlspecialchars($foto['url_foto']) . '" alt="Vista propiedad">';
                             echo '</div>';
                         }
-                    } else {
-                        // Si no hay fotos extra, mostramos la imagen principal por defecto
-                        echo '<div class="swiper-slide">';
-                        echo '<img src="' . htmlspecialchars($propiedad['imagen_principal']) . '" alt="Vista principal">';
-                        echo '</div>';
                     }
                     ?>
                 </div>
