@@ -11,23 +11,27 @@ body {
     overflow: hidden;
 }
 
-header {
-    background: #fff;
-    padding: 20px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: static;
-    top: 0;
-    z-index: 1000;
-}
 
+/* =========================================
+   ESTILOS DEL LOGO EN EL HEADER
+========================================= */
 header .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #008080; /* Teal color */
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
     text-decoration: none;
     float: left;
 }
 
+header .logo-img {
+    max-height: 60px !important; /* Limita la altura máxima de la imagen */
+    width: auto !important; /* Mantiene la proporción */
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* Para ocultar el texto si solo quieres dejar el logo de la imagen, descomenta la línea de abajo */
+/* header .logo span { display: none !important; } */
 header nav {
     float: right;
 }
