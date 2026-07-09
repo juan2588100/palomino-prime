@@ -36,13 +36,13 @@
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="container">
-                <h2>TU PARAÍSO ENTRE<br>EL MAR Y EL RÍO</h2>
-                <p>Encuentra la propiedad perfecta en Palomino,<br>Sierra Nevada, Colombia.</p>
-                <a href="#" class="btn btn-primary">VER PROPIEDADES DESTACADAS</a>
-            </div>
-        </section>
+    <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px;">
+    
+    <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">TU PARAÍSO ENTRE EL MAR Y EL RÍO</h1>
+    <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Encuentra la propiedad perfecta en Palomino, Sierra Nevada, Colombia.</p>
+    <a href="#propiedades" class="btn" style="background-color: #008080; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">VER PROPIEDADES DESTACADAS</a>
+
+</section>
 
         <section class="properties-section">
             <div class="container">
