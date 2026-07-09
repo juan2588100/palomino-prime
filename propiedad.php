@@ -38,6 +38,16 @@ $resultado_fotos = $conn->query($sql_fotos);
     <link rel="stylesheet" href="propiedad.css">
     <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
 <link rel="stylesheet" href="propiedad.css?v=<?= time(); ?>">
+
+<style>
+        header {
+            position: static !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+    </style>
+
 </head>
 <body>
     <header>
