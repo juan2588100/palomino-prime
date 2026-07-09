@@ -66,14 +66,7 @@ hero {
     background-blend-mode: overlay;
 }
 
-.hero-section {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1600x900');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    text-align: center;
-    padding: 200px 0;
-}
+
 
 .hero-section h2 {
     font-size: 48px;
