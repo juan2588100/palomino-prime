@@ -9,7 +9,10 @@
 <body>
     <header>
         <div class="container">
-            <a href="index.html" class="logo">Palomino Prime</a>
+        <a href="index.php" class="logo">
+    <img src="logo-palomino.png" alt="Palomino Mar y Río Inmobiliaria" class="logo-img">
+    <span>Palomino Prime</span>
+</a>
             <nav>
                 <ul>
                     <li><a href="index.php">INICIO</a></li>

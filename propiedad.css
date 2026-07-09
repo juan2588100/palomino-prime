@@ -8,6 +8,24 @@
     padding: 30px 20px; 
 }
 
+header .logo {
+    display: flex; /* Activa Flexbox para alinear elementos lado a lado */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+    gap: 15px; /* Espacio de separación entre el logo y el texto */
+    font-size: 24px;
+    font-weight: bold;
+    color: #008080; 
+    text-decoration: none;
+    float: left; /* Mantengo esto por si lo estabas usando para posicionar el menú */
+}
+
+/* Controlamos el tamaño de la imagen para que no deforme el menú */
+header .logo-img {
+    height: 50px; /* Ajusta este valor para hacer el logo más grande o pequeño */
+    width: auto; /* Mantiene la proporción de la imagen intacta */
+    object-fit: contain;
+}
+
 /* CORRECCIÓN: Reseteo forzado para evitar herencia del header global */
 header.propiedad-header { 
     position: static !important;
