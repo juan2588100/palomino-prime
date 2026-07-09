@@ -36,6 +36,8 @@ $resultado_fotos = $conn->query($sql_fotos);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="propiedad.css">
+    <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
+<link rel="stylesheet" href="propiedad.css?v=<?= time(); ?>">
 </head>
 <body>
     <header>
