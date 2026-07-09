@@ -40,7 +40,7 @@
                 <div class="featured-properties-grid">
                     
                     <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabaña-mar.webp" alt="Cabaña frente al mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                        <img src="img/propiedades/destacadas/cabana-mar.webp" alt="Cabaña frente al mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                         <h4>CABAÑA FRENTE AL MAR</h4>
                         <p class="price">$180,000 USD</p>
                         <p class="location">Ubicación: Palomino Prime</p>
@@ -48,7 +48,7 @@
                     </div>
                     
                     <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabaña-mar1.avif" alt="Villa Sierra del Mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                        <img src="img/propiedades/destacadas/cabana-mar1.avif" alt="Villa Sierra del Mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                         <h4>VILLA SIERRA DEL MAR</h4>
                         <p class="price">$750M COP</p>
                         <p class="location">Ubicación: Palomino Prime</p>
@@ -56,7 +56,7 @@
                     </div>
                     
                     <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabaña-mar2.avif" alt="Terreno con acceso al río" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                        <img src="img/propiedades/destacadas/cabana-mar2.avif" alt="Terreno con acceso al río" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                         <h4>LOTE CON ACCESO AL RÍO</h4>
                         <p class="price">$100M COP</p>
                         <p class="location">Ubicación: Palomino Prime</p>
@@ -64,7 +64,7 @@
                     </div>
                     
                     <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabaña-mar3.avif" alt="Refugio en la selva" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                        <img src="img/propiedades/destacadas/cabana-mar3.avif" alt="Refugio en la selva" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                         <h4>REFUGIO EN LA SELVA</h4>
                         <p class="price">$250M COP</p>
                         <p class="location">Ubicación: Palomino Prime</p>
