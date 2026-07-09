@@ -64,7 +64,7 @@ $resultado_todas = $conn->query($sql_todas);
                             <div class="property-card">
                                 <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                                 
-                                <h4><?= htmlspecialchars($prop['titulo']) ?></h4>
+                                <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
                                 <p class="price"><?= $precio_mostrar ?></p>
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
                                 

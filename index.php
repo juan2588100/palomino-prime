@@ -1,3 +1,16 @@
+<?php
+// 1. Conexión a tu base de datos de Hostinger
+$conn = new mysqli("localhost", "u166935491_admin", "cS)Au4-kA2dF", "u166935491_palominoprime");
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// 2. Traer SOLO las 4 propiedades destacadas
+$sql_destacadas = "SELECT * FROM propiedades WHERE is_destacada = 1 LIMIT 4";
+$resultado_destacadas = $conn->query($sql_destacadas);
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -38,40 +51,36 @@
             <div class="container">
                 <h3>DESTACADAS</h3>
                 <div class="featured-properties-grid">
-                    
-                    <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabana-mar.webp" alt="Cabaña frente al mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                        <h4>CABAÑA FRENTE AL MAR</h4>
-                        <p class="price">$180,000 USD</p>
-                        <p class="location">Ubicación: Palomino Prime</p>
-                        <a href="propiedad.php?id=1" class="btn btn-secondary">MÁS DETALLES</a>
-                        
-                    </div>
-                    
-                    <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabana-mar1.avif" alt="Villa Sierra del Mar" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                        <h4>VILLA SIERRA DEL MAR</h4>
-                        <p class="price">$750M COP</p>
-                        <p class="location">Ubicación: Palomino Prime</p>
-                        <a href="propiedad.php?id=2" class="btn btn-secondary">MÁS DETALLES</a>
-                    </div>
-                    
-                    <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabana-mar2.avif" alt="Terreno con acceso al río" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                        <h4>LOTE CON ACCESO AL RÍO</h4>
-                        <p class="price">$100M COP</p>
-                        <p class="location">Ubicación: Palomino Prime</p>
-                        <a href="propiedad.php?id=3" class="btn btn-secondary">MÁS DETALLES</a>
-                    </div>
-                    
-                    <div class="property-card">
-                        <img src="img/propiedades/destacadas/cabana-mar3.avif" alt="Refugio en la selva" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                        <h4>REFUGIO EN LA SELVA</h4>
-                        <p class="price">$250M COP</p>
-                        <p class="location">Ubicación: Palomino Prime</p>
-                        <a href="propiedad.php?id=4" class="btn btn-secondary">MÁS DETALLES</a>
-                    </div>
-
+                    <?php
+                    // Si hay propiedades destacadas en la base de datos, las muestra
+                    if ($resultado_destacadas->num_rows > 0) {
+                        while($prop = $resultado_destacadas->fetch_assoc()) {
+                            
+                            // Formatear el precio para que diferencie USD o COP
+                            $precio_mostrar = "";
+                            if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0) {
+                                $precio_mostrar = "$" . number_format($prop['precio_usd'], 0, ',', '.') . " USD";
+                            } elseif (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0) {
+                                $precio_mostrar = "$" . number_format($prop['precio_cop'], 0, ',', '.') . " COP";
+                            }
+                            ?>
+                            
+                            <div class="property-card">
+                                <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                                
+                                <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
+                                
+                                <p class="price"><?= $precio_mostrar ?></p>
+                                <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
+                                <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
+                            </div>
+                            
+                            <?php
+                        }
+                    } else {
+                        echo "<p>No hay propiedades destacadas por el momento.</p>";
+                    }
+                    ?>
                 </div>
             </div>
         </section>
