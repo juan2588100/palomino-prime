@@ -9,9 +9,10 @@
 <body>
     <header>
         <div class="container">
-        <a href="index.php" class="logo">
-    <img src="img/palomino.png" alt="Palomino Mar y Río" class="logo-img">
-    <span>Palomino mar y rio</span>
+        <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 10px;">
+    <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 60px !important; width: auto !important; object-fit: contain !important; display: block !important;">
+    
+    <span style="font-size: 24px; font-weight: bold; color: #008080;">Palomino Prime</span>
 </a>
             <nav>
                 <ul>
