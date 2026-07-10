@@ -56,7 +56,7 @@ header nav ul li a {
 
 hero {
     /* Aquí llamamos a la imagen. Ojo: si style.css está en la raíz, la ruta es img/ */
-    background-image: url('img/banner.png');
+    background-image: url('img/banner-nuevo.png');
     background-size: cover; /* Hace que la imagen cubra todo el espacio sin deformarse */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;
