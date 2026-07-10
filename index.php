@@ -85,30 +85,79 @@ $resultado_destacadas = $conn->query($sql_destacadas);
             </div>
         </section>
 
-        <section class="about-section">
-            <div class="container">
-                <h3>PALOMINO PRIME MAR Y RÍO:<br>MÁS QUE INMOBILIARIA</h3>
-                <p>Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
-                <div class="icons-grid">
-                    <div class="icon-item">
-                        <img src="https://via.placeholder.com/64" alt="Expertos Locales" width="64" height="64">
-                        <h4>Expertos Locales</h4>
-                    </div>
-                    <div class="icon-item">
-                        <img src="https://via.placeholder.com/64" alt="Propiedades Exclusivas" width="64" height="64">
-                        <h4>Propiedades Exclusivas</h4>
-                    </div>
-                    <div class="icon-item">
-                        <img src="https://via.placeholder.com/64" alt="Comprometidos con Palomino" width="64" height="64">
-                        <h4>Comprometidos con Palomino</h4>
-                    </div>
-                    <div class="icon-item">
-                        <img src="https://via.placeholder.com/64" alt="Servicio Personalizado" width="64" height="64">
-                        <h4>Servicio Personalizado</h4>
-                    </div>
+       <!-- SECCIÓN: MÁS QUE INMOBILIARIA -->
+<section class="about-section-custom">
+    <div class="container">
+        <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
+        <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
+        
+        <!-- Grid de Iconos: 6 columnas -->
+        <div class="features-grid">
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/palm-tree.png" alt="Expertos Locales">
+                <h4>Expertos Locales</h4>
+                <p>Conocemos cada rincón de Palomino y sus mejores oportunidades.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/cottage--v1.png" alt="Propiedades Exclusivas">
+                <h4>Propiedades<br>Exclusivas</h4>
+                <p>Seleccionamos propiedades únicas con alto potencial.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/positive-dynamic.png" alt="Alta Valorización">
+                <h4>Alta<br>Valorización</h4>
+                <p>Invierte hoy en una zona de constante crecimiento turístico y comercial.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/marker--v1.png" alt="Ubicación Privilegiada">
+                <h4>Ubicación<br>Privilegiada</h4>
+                <p>Entre el mar Caribe y la Sierra Nevada de Santa Marta.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/house-insurance.png" alt="Servicio Personalizado">
+                <h4>Servicio<br>Personalizado</h4>
+                <p>Te guiamos desde la búsqueda hasta la escritura.</p>
+            </div>
+            <div class="feature-item">
+                <img src="https://img.icons8.com/ios/100/00635d/like--v1.png" alt="Estilo de Vida Único">
+                <h4>Estilo de Vida<br>Único</h4>
+                <p>Vive rodeado de naturaleza, playas vírgenes y la magia de Palomino.</p>
+            </div>
+        </div>
+
+        <!-- Barra Píldora de Estadísticas -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/00635d/home--v1.png" alt="Propiedades">
+                <div class="stat-text">
+                    <div class="number">120+</div>
+                    <div class="label">Propiedades<br>Disponibles</div>
                 </div>
             </div>
-        </section>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/00635d/user-group-man-man.png" alt="Clientes">
+                <div class="stat-text">
+                    <div class="number">98%</div>
+                    <div class="label">Clientes<br>Satisfechos</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/00635d/star--v1.png" alt="Años">
+                <div class="stat-text">
+                    <div class="number">10+</div>
+                    <div class="label">Años de experiencia<br>en Palomino</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/00635d/shield.png" alt="Seguridad">
+                <div class="stat-text">
+                    <div class="number">100%</div>
+                    <div class="label">Acompañamiento<br>Legal y Seguro</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <section class="map-section">
             <div class="container">
