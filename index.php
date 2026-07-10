@@ -17,7 +17,7 @@ $resultado_destacadas = $conn->query($sql_destacadas);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palomino Prime - Mar y Río | Tu Inmobiliaria en Palomino</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
 </head>
 <body>
     <header>
