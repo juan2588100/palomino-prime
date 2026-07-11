@@ -68,6 +68,22 @@ $resultado_todas = $conn->query($sql_todas);
                                 <p class="price"><?= $precio_mostrar ?></p>
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
                                 
+                                <!-- INICIO DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
+                                <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
+                                    <?php 
+                                    // Muestra los metros cuadrados si la base de datos tiene el dato
+                                    if (!empty($prop['area_m2'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
+                                    }
+                                    
+                                    // Muestra el frente x fondo si registraste dimensiones
+                                    if (!empty($prop['dimensiones'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
+                                    }
+                                    ?>
+                                </div>
+                                <!-- FIN DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
+                                
                                 <!-- Botón que envía al "molde" individual con el ID correcto -->
                                 <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
                             </div>
