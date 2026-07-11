@@ -51,20 +51,14 @@ $resultado_fotos = $conn->query($sql_fotos);
 <body>
     <header>
         <div class="container">
-        <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
-    
-    <picture>
-        <!-- Pantallas medianas y grandes (Tablets y Escritorio: 768px o más) -->
-        <source media="(min-width: 768px)" srcset="img/palomino-LOGO-MAR-Y-RIO.png">
-        
-        <!-- Pantallas pequeñas (Celulares: se carga por defecto) -->
-        <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
-    </picture>
-    
-    <!-- Texto de la marca -->
-   
-
-</a>
+            <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
+                <picture>
+                    <!-- Pantallas medianas y grandes (Tablets y Escritorio: 768px o más) -->
+                    <source media="(min-width: 768px)" srcset="img/palomino-LOGO-MAR-Y-RIO.png">
+                    <!-- Pantallas pequeñas (Celulares: se carga por defecto) -->
+                    <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
+                </picture>
+            </a>
             
             <nav>
                 <ul>
@@ -115,11 +109,25 @@ $resultado_fotos = $conn->query($sql_fotos);
                 <h2>Acerca de esta propiedad</h2>
                 <p><?= nl2br(htmlspecialchars($propiedad['descripcion'])) ?></p>
 
+                <!-- INICIO DEL CÓDIGO INTELIGENTE DE CARACTERÍSTICAS -->
                 <div class="features-grid">
-                    <div class="feature-card">🛏️ <?= $propiedad['habitaciones'] ?> Habitaciones</div>
-                    <div class="feature-card">🚿 <?= $propiedad['banos'] ?> Baños</div>
-                    <div class="feature-card">📐 <?= $propiedad['area_m2'] ?> m² Área</div>
+                    <?php if (!empty($propiedad['habitaciones']) && $propiedad['habitaciones'] > 0): ?>
+                        <div class="feature-card">🛏️ <?= htmlspecialchars($propiedad['habitaciones']) ?> Habitaciones</div>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($propiedad['banos']) && $propiedad['banos'] > 0): ?>
+                        <div class="feature-card">🚿 <?= htmlspecialchars($propiedad['banos']) ?> Baños</div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($propiedad['area_m2'])): ?>
+                        <div class="feature-card">📐 <?= htmlspecialchars($propiedad['area_m2']) ?> m² Área</div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($propiedad['dimensiones'])): ?>
+                        <div class="feature-card">📏 <?= htmlspecialchars($propiedad['dimensiones']) ?> Dimensiones</div>
+                    <?php endif; ?>
                 </div>
+                <!-- FIN DEL CÓDIGO INTELIGENTE DE CARACTERÍSTICAS -->
 
                 <div id="mapa-container">
                     <h3>Ubicación Exacta</h3>
