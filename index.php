@@ -114,10 +114,10 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                 <p>Entre el mar Caribe y la Sierra Nevada de Santa Marta.</p>
             </div>
             <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/house-insurance.png" alt="Servicio Personalizado">
-                <h4>Servicio<br>Personalizado</h4>
-                <p>Te guiamos desde la búsqueda hasta la escritura.</p>
-            </div>
+    <img src="https://img.icons8.com/ios/100/00635d/handshake.png" alt="Servicio Personalizado">
+    <h4>Servicio<br>Personalizado</h4>
+    <p>Te guiamos desde la búsqueda hasta la escritura.</p>
+</div>
             <div class="feature-item">
                 <img src="https://img.icons8.com/ios/100/00635d/like--v1.png" alt="Estilo de Vida Único">
                 <h4>Estilo de Vida<br>Único</h4>
