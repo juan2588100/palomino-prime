@@ -10,7 +10,6 @@ $sql_destacadas = "SELECT * FROM propiedades WHERE is_destacada = 1 LIMIT 4";
 $resultado_destacadas = $conn->query($sql_destacadas);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -72,6 +71,23 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                                 
                                 <p class="price"><?= $precio_mostrar ?></p>
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
+                                
+                                <!-- INICIO DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
+                                <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
+                                    <?php 
+                                    // Muestra los metros cuadrados si la base de datos tiene el dato
+                                    if (!empty($prop['area_m2'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
+                                    }
+                                    
+                                    // Muestra el frente x fondo si registraste dimensiones
+                                    if (!empty($prop['dimensiones'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
+                                    }
+                                    ?>
+                                </div>
+                                <!-- FIN DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
+
                                 <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
                             </div>
                             
@@ -85,79 +101,79 @@ $resultado_destacadas = $conn->query($sql_destacadas);
             </div>
         </section>
 
-       <!-- SECCIÓN: MÁS QUE INMOBILIARIA -->
-<section class="about-section-custom">
-    <div class="container">
-        <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
-        <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
-        
-        <!-- Grid de Iconos: 6 columnas -->
-        <div class="features-grid">
-            <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/palm-tree.png" alt="Expertos Locales">
-                <h4>Expertos Locales</h4>
-                <p>Conocemos cada rincón de Palomino y sus mejores oportunidades.</p>
-            </div>
-            <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/cottage--v1.png" alt="Propiedades Exclusivas">
-                <h4>Propiedades<br>Exclusivas</h4>
-                <p>Seleccionamos propiedades únicas con alto potencial.</p>
-            </div>
-            <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/positive-dynamic.png" alt="Alta Valorización">
-                <h4>Alta<br>Valorización</h4>
-                <p>Invierte hoy en una zona de constante crecimiento turístico y comercial.</p>
-            </div>
-            <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/marker--v1.png" alt="Ubicación Privilegiada">
-                <h4>Ubicación<br>Privilegiada</h4>
-                <p>Entre el mar Caribe y la Sierra Nevada de Santa Marta.</p>
-            </div>
-            <div class="feature-item">
-    <img src="https://img.icons8.com/ios/100/00635d/handshake.png" alt="Servicio Personalizado">
-    <h4>Servicio<br>Personalizado</h4>
-    <p>Te guiamos desde la búsqueda hasta la escritura.</p>
-</div>
-            <div class="feature-item">
-                <img src="https://img.icons8.com/ios/100/00635d/like--v1.png" alt="Estilo de Vida Único">
-                <h4>Estilo de Vida<br>Único</h4>
-                <p>Vive rodeado de naturaleza, playas vírgenes y la magia de Palomino.</p>
-            </div>
-        </div>
+        <!-- SECCIÓN: MÁS QUE INMOBILIARIA -->
+        <section class="about-section-custom">
+            <div class="container">
+                <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
+                <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
+                
+                <!-- Grid de Iconos: 6 columnas -->
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/palm-tree.png" alt="Expertos Locales">
+                        <h4>Expertos Locales</h4>
+                        <p>Conocemos cada rincón de Palomino y sus mejores oportunidades.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/cottage--v1.png" alt="Propiedades Exclusivas">
+                        <h4>Propiedades<br>Exclusivas</h4>
+                        <p>Seleccionamos propiedades únicas con alto potencial.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/positive-dynamic.png" alt="Alta Valorización">
+                        <h4>Alta<br>Valorización</h4>
+                        <p>Invierte hoy en una zona de constante crecimiento turístico y comercial.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/marker--v1.png" alt="Ubicación Privilegiada">
+                        <h4>Ubicación<br>Privilegiada</h4>
+                        <p>Entre el mar Caribe y la Sierra Nevada de Santa Marta.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/handshake.png" alt="Servicio Personalizado">
+                        <h4>Servicio<br>Personalizado</h4>
+                        <p>Te guiamos desde la búsqueda hasta la escritura.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/like--v1.png" alt="Estilo de Vida Único">
+                        <h4>Estilo de Vida<br>Único</h4>
+                        <p>Vive rodeado de naturaleza, playas vírgenes y la magia de Palomino.</p>
+                    </div>
+                </div>
 
-        <!-- Barra Píldora de Estadísticas -->
-        <div class="stats-bar">
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/00635d/home--v1.png" alt="Propiedades">
-                <div class="stat-text">
-                    <div class="number">120+</div>
-                    <div class="label">Propiedades<br>Disponibles</div>
+                <!-- Barra Píldora de Estadísticas -->
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/home--v1.png" alt="Propiedades">
+                        <div class="stat-text">
+                            <div class="number">120+</div>
+                            <div class="label">Propiedades<br>Disponibles</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/user-group-man-man.png" alt="Clientes">
+                        <div class="stat-text">
+                            <div class="number">98%</div>
+                            <div class="label">Clientes<br>Satisfechos</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/star--v1.png" alt="Años">
+                        <div class="stat-text">
+                            <div class="number">10+</div>
+                            <div class="label">Años de experiencia<br>en Palomino</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/00635d/shield.png" alt="Seguridad">
+                        <div class="stat-text">
+                            <div class="number">100%</div>
+                            <div class="label">Acompañamiento<br>Legal y Seguro</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/00635d/user-group-man-man.png" alt="Clientes">
-                <div class="stat-text">
-                    <div class="number">98%</div>
-                    <div class="label">Clientes<br>Satisfechos</div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/00635d/star--v1.png" alt="Años">
-                <div class="stat-text">
-                    <div class="number">10+</div>
-                    <div class="label">Años de experiencia<br>en Palomino</div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/00635d/shield.png" alt="Seguridad">
-                <div class="stat-text">
-                    <div class="number">100%</div>
-                    <div class="label">Acompañamiento<br>Legal y Seguro</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <section class="map-section">
             <div class="container">
