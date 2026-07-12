@@ -5,8 +5,48 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// 2. Traer TODAS las propiedades (ordenadas de la más nueva a la más antigua)
-$sql_todas = "SELECT * FROM propiedades ORDER BY id DESC";
+// 2. Capturar lo que el usuario busca y cómo quiere ordenarlo
+$busqueda = isset($_GET['q']) ? $conn->real_escape_string($_GET['q']) : '';
+$ordenar = isset($_GET['ordenar']) ? $_GET['ordenar'] : 'reciente';
+
+// 3. Armar la consulta SQL de forma inteligente según los filtros
+$sql_todas = "SELECT * FROM propiedades";
+$condiciones = [];
+
+// Si el usuario escribió algo en la barra clásica
+if (!empty($busqueda)) {
+    // Busca en el título, ubicación o descripción
+    $condiciones[] = "(titulo LIKE '%$busqueda%' OR ubicacion_texto LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%')";
+}
+
+// Unir las condiciones si existen
+if (count($condiciones) > 0) {
+    $sql_todas .= " WHERE " . implode(" AND ", $condiciones);
+}
+
+// 4. Aplicar el orden seleccionado
+switch ($ordenar) {
+    case 'precio_alto':
+        $sql_todas .= " ORDER BY precio_cop DESC"; 
+        break;
+    case 'precio_bajo':
+        $sql_todas .= " ORDER BY precio_cop ASC";
+        break;
+    case 'area_mayor':
+        $sql_todas .= " ORDER BY area_m2 DESC";
+        break;
+    case 'area_menor':
+        $sql_todas .= " ORDER BY area_m2 ASC";
+        break;
+    case 'antiguo':
+        $sql_todas .= " ORDER BY id ASC";
+        break;
+    case 'reciente':
+    default:
+        $sql_todas .= " ORDER BY id DESC"; // Por defecto, los últimos agregados
+        break;
+}
+
 $resultado_todas = $conn->query($sql_todas);
 ?>
 
@@ -15,7 +55,7 @@ $resultado_todas = $conn->query($sql_todas);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todas las Propiedades | Palomino Prime</title>
+    <title>Catálogo de Propiedades | Palomino Prime</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,7 +71,6 @@ $resultado_todas = $conn->query($sql_todas);
                 <ul>
                     <li><a href="index.php">INICIO</a></li>
                     <li><a href="index.php#nosotros">NOSOTROS</a></li>
-                    <!-- El enlace ahora apunta correctamente a sí mismo -->
                     <li><a href="propiedades.php">PROPIEDADES</a></li>
                     <li><a href="index.php#palomino">PALOMINO</a></li>
                     <li><a href="index.php#contacto">CONTACTO</a></li>
@@ -41,17 +80,52 @@ $resultado_todas = $conn->query($sql_todas);
     </header>
 
     <main>
-        <section class="properties-section" style="padding-top: 120px;"> <!-- Padding extra para que el menú no tape el título -->
+        <section class="properties-section" style="padding-top: 120px;">
             <div class="container">
-                <h1 style="text-align: center; margin-bottom: 40px; color: #008080;">NUESTRO CATÁLOGO DE PROPIEDADES</h1>
+                <h1 style="text-align: center; margin-bottom: 20px; color: #008080;">NUESTRO CATÁLOGO DE PROPIEDADES</h1>
                 
+                <!-- INICIO DEL BUSCADOR Y FILTROS -->
+                <div class="search-filter-container" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <form action="propiedades.php" method="GET" style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+                        
+                        <!-- Barra de búsqueda clásica -->
+                        <div style="flex: 1; min-width: 250px;">
+                            <input type="text" name="q" placeholder="Buscar por palabra clave, título o ubicación..." value="<?= htmlspecialchars($busqueda) ?>" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px;">
+                        </div>
+                        
+                        <!-- Filtro Ordenar Por -->
+                        <div style="min-width: 200px;">
+                            <select name="ordenar" onchange="this.form.submit()" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; cursor: pointer;">
+                                <option value="reciente" <?= $ordenar == 'reciente' ? 'selected' : '' ?>>🕒 Más recientes</option>
+                                <option value="antiguo" <?= $ordenar == 'antiguo' ? 'selected' : '' ?>>⏳ Menos recientes</option>
+                                <option value="precio_alto" <?= $ordenar == 'precio_alto' ? 'selected' : '' ?>>📈 Mayor precio</option>
+                                <option value="precio_bajo" <?= $ordenar == 'precio_bajo' ? 'selected' : '' ?>>📉 Menor precio</option>
+                                <option value="area_mayor" <?= $ordenar == 'area_mayor' ? 'selected' : '' ?>>📐 Mayor área</option>
+                                <option value="area_menor" <?= $ordenar == 'area_menor' ? 'selected' : '' ?>>📏 Menor área</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Botón Buscar -->
+                        <div>
+                            <button type="submit" class="btn" style="background-color: #008080; color: white; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">BUSCAR</button>
+                        </div>
+
+                        <!-- Botón Limpiar (Solo aparece si el usuario hizo una búsqueda) -->
+                        <?php if(!empty($busqueda) || $ordenar != 'reciente'): ?>
+                            <div>
+                                <a href="propiedades.php" style="display: inline-block; padding: 12px 20px; color: #555; text-decoration: none; border: 1px solid #ddd; border-radius: 6px; background: white;">Limpiar Filtros</a>
+                            </div>
+                        <?php endif; ?>
+
+                    </form>
+                </div>
+                <!-- FIN DEL BUSCADOR Y FILTROS -->
+
                 <div class="featured-properties-grid">
                     <?php
-                    // Recorremos todas las propiedades encontradas en la tabla
                     if ($resultado_todas->num_rows > 0) {
                         while($prop = $resultado_todas->fetch_assoc()) {
                             
-                            // Lógica para mostrar USD o COP
                             $precio_mostrar = "";
                             if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0) {
                                 $precio_mostrar = "$" . number_format($prop['precio_usd'], 0, ',', '.') . " USD";
@@ -60,7 +134,6 @@ $resultado_todas = $conn->query($sql_todas);
                             }
                             ?>
                             
-                            <!-- Tarjeta de la propiedad -->
                             <div class="property-card">
                                 <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                                 
@@ -68,30 +141,27 @@ $resultado_todas = $conn->query($sql_todas);
                                 <p class="price"><?= $precio_mostrar ?></p>
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
                                 
-                                <!-- INICIO DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
                                 <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
                                     <?php 
-                                    // Muestra los metros cuadrados si la base de datos tiene el dato
                                     if (!empty($prop['area_m2'])) {
                                         echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
                                     }
-                                    
-                                    // Muestra el frente x fondo si registraste dimensiones
                                     if (!empty($prop['dimensiones'])) {
                                         echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
                                     }
                                     ?>
                                 </div>
-                                <!-- FIN DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
                                 
-                                <!-- Botón que envía al "molde" individual con el ID correcto -->
                                 <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
                             </div>
                             
                             <?php
                         }
                     } else {
-                        echo "<p style='text-align:center; width:100%;'>No hay propiedades disponibles en este momento.</p>";
+                        echo "<div style='text-align:center; width:100%; padding: 40px;'>";
+                        echo "<h3 style='color: #666;'>No se encontraron propiedades 😔</h3>";
+                        echo "<p>Intenta buscar con otras palabras o limpia los filtros.</p>";
+                        echo "</div>";
                     }
                     ?>
                 </div>
