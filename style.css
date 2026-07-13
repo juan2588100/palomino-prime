@@ -217,61 +217,80 @@ hero {
     line-height: 1.5;
 }
 
-/* Barra de estadísticas (Píldora flotante) */
-.stats-bar {
-    background: #ffffff;
-    border-radius: 50px;
-    padding: 25px 40px;
+/* =========================================
+   DISEÑO BARRA DE ESTADÍSTICAS VERDE
+========================================= */
+.stats-bar-verde {
+    background-color: #004d4a; /* Verde oscuro corporativo */
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 30px 40px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-    flex-wrap: wrap;
-    gap: 20px;
-    border: 1px solid #f0f0f0;
+    margin-top: 50px;
+    box-shadow: 0 10px 25px rgba(0, 77, 74, 0.2);
 }
 
-.stat-item {
+.stats-bar-verde .stat-item {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin: 10px;
+    flex: 1;
+    min-width: 200px;
 }
 
-.stat-item img {
-    height: 45px;
+.stats-bar-verde .stat-item img {
+    width: 65px;
+    height: 65px;
+    border: 2px solid #ffffff; /* Círculo blanco alrededor del icono */
+    border-radius: 50%;
+    padding: 12px;
+    object-fit: contain;
 }
 
-.stat-item .stat-text {
+.stats-bar-verde .stat-text {
     text-align: left;
 }
 
-.stat-item .stat-text .number {
-    font-size: 28px;
-    font-weight: 900;
-    color: #2c3e50;
-    line-height: 1;
-    margin-bottom: 5px;
+.stats-bar-verde .number {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 2px;
 }
 
-.stat-item .stat-text .label {
+.stats-bar-verde .label {
     font-size: 11px;
-    font-weight: 800;
-    color: #333;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    opacity: 0.9;
 }
 
-/* Responsive de la sección Nosotros */
+/* Responsive de la sección Nosotros y Barra Verde */
 @media (max-width: 1024px) {
     .features-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 10px; }
     .feature-item:nth-child(3) { border-right: none; }
     .feature-item:nth-child(6) { border-right: none; }
-    .stats-bar { border-radius: 20px; padding: 25px; }
+    
+    .stats-bar-verde { padding: 25px; }
 }
 
 @media (max-width: 768px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 10px; }
     .feature-item:nth-child(2), .feature-item:nth-child(4) { border-right: none; }
-    .stats-bar { justify-content: center; flex-direction: column; align-items: flex-start; margin: 0 auto; width: max-content; }
+    
+    .stats-bar-verde { 
+        padding: 20px;
+        justify-content: flex-start;
+    }
+    .stats-bar-verde .stat-item {
+        width: 100%;
+        min-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {

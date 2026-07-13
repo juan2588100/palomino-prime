@@ -140,39 +140,37 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                         <p>Vive rodeado de naturaleza, playas vírgenes y la magia de Palomino.</p>
                     </div>
                 </div>
-
-                <!-- Barra Píldora de Estadísticas -->
-                <div class="stats-bar">
-                    <div class="stat-item">
-                        <img src="https://img.icons8.com/ios/100/00635d/home--v1.png" alt="Propiedades">
-                        <div class="stat-text">
-                            <div class="number">120+</div>
-                            <div class="label">Propiedades<br>Disponibles</div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <img src="https://img.icons8.com/ios/100/00635d/user-group-man-man.png" alt="Clientes">
-                        <div class="stat-text">
-                            <div class="number">98%</div>
-                            <div class="label">Clientes<br>Satisfechos</div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <img src="https://img.icons8.com/ios/100/00635d/star--v1.png" alt="Años">
-                        <div class="stat-text">
-                            <div class="number">10+</div>
-                            <div class="label">Años de experiencia<br>en Palomino</div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <img src="https://img.icons8.com/ios/100/00635d/shield.png" alt="Seguridad">
-                        <div class="stat-text">
-                            <div class="number">100%</div>
-                            <div class="label">Acompañamiento<br>Legal y Seguro</div>
-                        </div>
-                    </div>
+<!-- Barra Píldora de Estadísticas -->
+<div class="stats-bar-verde">
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/ffffff/home--v1.png" alt="Propiedades">
+                <div class="stat-text">
+                    <div class="number">120+</div>
+                    <div class="label">PROPIEDADES<br>DISPONIBLES</div>
                 </div>
             </div>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/ffffff/user-group-man-man.png" alt="Clientes">
+                <div class="stat-text">
+                    <div class="number">98%</div>
+                    <div class="label">CLIENTES<br>SATISFECHOS</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/ffffff/star--v1.png" alt="Años">
+                <div class="stat-text">
+                    <div class="number">10+</div>
+                    <div class="label">AÑOS DE EXPERIENCIA<br>EN PALOMINO</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <img src="https://img.icons8.com/ios/100/ffffff/shield.png" alt="Seguridad">
+                <div class="stat-text">
+                    <div class="number">100%</div>
+                    <div class="label">ACOMPAÑAMIENTO<br>LEGAL Y SEGURO</div>
+                </div>
+            </div>
+        </div>
         </section>
 
         <section class="map-section">
