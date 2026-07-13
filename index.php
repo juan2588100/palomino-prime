@@ -5,9 +5,21 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// 2. Traer SOLO las 4 propiedades destacadas
+// 2. Traer SOLO las 4 propiedades destacadas para la cuadrícula
 $sql_destacadas = "SELECT * FROM propiedades WHERE is_destacada = 1 LIMIT 4";
 $resultado_destacadas = $conn->query($sql_destacadas);
+
+// 3. Traer TODAS las propiedades que tengan coordenadas para el mapa interactivo
+$sql_mapa = "SELECT id, titulo, precio_usd, precio_cop, imagen_principal, latitud, longitud FROM propiedades WHERE latitud IS NOT NULL AND longitud IS NOT NULL";
+$resultado_mapa = $conn->query($sql_mapa);
+$propiedades_mapa = [];
+if ($resultado_mapa && $resultado_mapa->num_rows > 0) {
+    while($row = $resultado_mapa->fetch_assoc()) {
+        $propiedades_mapa[] = $row;
+    }
+}
+// Convertimos los datos a JSON para que JavaScript pueda dibujar los pines
+$json_mapa = json_encode($propiedades_mapa);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +29,9 @@ $resultado_destacadas = $conn->query($sql_destacadas);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palomino Prime - Mar y Río | Tu Inmobiliaria en Palomino</title>
     <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
+    
+    <!-- Librería CSS del Mapa Interactivo (Leaflet) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
     <header>
@@ -58,7 +73,7 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                             // Formatear el precio para que diferencie USD o COP
                             $precio_mostrar = "";
                             if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0) {
-                                $precio_mostrar = "$" . number_format($prop['precio_usd'], 0, ',', '.') . " USD";
+                                $precio_mostrar = "$" . number_format($prop['precio_usd'], 2, '.', ',') . " USD";
                             } elseif (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0) {
                                 $precio_mostrar = "$" . number_format($prop['precio_cop'], 0, ',', '.') . " COP";
                             }
@@ -75,12 +90,9 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                                 <!-- INICIO DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
                                 <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
                                     <?php 
-                                    // Muestra los metros cuadrados si la base de datos tiene el dato
                                     if (!empty($prop['area_m2'])) {
                                         echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
                                     }
-                                    
-                                    // Muestra el frente x fondo si registraste dimensiones
                                     if (!empty($prop['dimensiones'])) {
                                         echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
                                     }
@@ -107,7 +119,7 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                 <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
                 <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
                 
-                <!-- Grid de Iconos: 6 columnas -->
+                <!-- Grid de Iconos -->
                 <div class="features-grid">
                     <div class="feature-item">
                         <img src="https://img.icons8.com/ios/100/00635d/palm-tree.png" alt="Expertos Locales">
@@ -140,51 +152,48 @@ $resultado_destacadas = $conn->query($sql_destacadas);
                         <p>Vive rodeado de naturaleza, playas vírgenes y la magia de Palomino.</p>
                     </div>
                 </div>
-<!-- Barra Píldora de Estadísticas -->
-<div class="stats-bar-verde">
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/ffffff/home--v1.png" alt="Propiedades">
-                <div class="stat-text">
-                    <div class="number">120+</div>
-                    <div class="label">PROPIEDADES<br>DISPONIBLES</div>
+
+                <!-- Barra Píldora de Estadísticas -->
+                <div class="stats-bar-verde">
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/ffffff/home--v1.png" alt="Propiedades">
+                        <div class="stat-text">
+                            <div class="number">120+</div>
+                            <div class="label">PROPIEDADES<br>DISPONIBLES</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/ffffff/user-group-man-man.png" alt="Clientes">
+                        <div class="stat-text">
+                            <div class="number">98%</div>
+                            <div class="label">CLIENTES<br>SATISFECHOS</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/ffffff/star--v1.png" alt="Años">
+                        <div class="stat-text">
+                            <div class="number">10+</div>
+                            <div class="label">AÑOS DE EXPERIENCIA<br>EN PALOMINO</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <img src="https://img.icons8.com/ios/100/ffffff/shield.png" alt="Seguridad">
+                        <div class="stat-text">
+                            <div class="number">100%</div>
+                            <div class="label">ACOMPAÑAMIENTO<br>LEGAL Y SEGURO</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/ffffff/user-group-man-man.png" alt="Clientes">
-                <div class="stat-text">
-                    <div class="number">98%</div>
-                    <div class="label">CLIENTES<br>SATISFECHOS</div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/ffffff/star--v1.png" alt="Años">
-                <div class="stat-text">
-                    <div class="number">10+</div>
-                    <div class="label">AÑOS DE EXPERIENCIA<br>EN PALOMINO</div>
-                </div>
-            </div>
-            <div class="stat-item">
-                <img src="https://img.icons8.com/ios/100/ffffff/shield.png" alt="Seguridad">
-                <div class="stat-text">
-                    <div class="number">100%</div>
-                    <div class="label">ACOMPAÑAMIENTO<br>LEGAL Y SEGURO</div>
-                </div>
-            </div>
-        </div>
         </section>
 
         <section class="map-section">
             <div class="container">
-                <h3>UBICACIÓN</h3>
-                <div id="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15655.483120619865!2d-73.56382098064603!3d11.197042571343714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e83344b5a26685f%3A0xc3f833b3a32f7a0b!2sPalomino%2C%20Dibulla%2C%20La%20Guajira!5e0!3m2!1ses!2sco!4v1716301345678!5m2!1ses!2sco" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="map-filter">
-                    <input type="text" placeholder="Ubicación">
-                    <input type="text" placeholder="Tipo">
-                    <input type="text" placeholder="Rango Precio">
-                    <button class="btn btn-primary">BUSCAR</button>
-                </div>
+                <h3>EXPLORA NUESTRO MAPA DE PROPIEDADES</h3>
+                
+                <!-- AQUI VA EL NUEVO MAPA INTERACTIVO -->
+                <div id="mapa-interactivo" style="width: 100%; height: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #008080;"></div>
+                
             </div>
         </section>
     </main>
@@ -209,5 +218,53 @@ $resultado_destacadas = $conn->query($sql_destacadas);
             <p>© 2024 Palomino Prime Mar y Río. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- Librería JS del Mapa Interactivo (Leaflet) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Script para dibujar el mapa y los pines -->
+    <script>
+        // 1. Inicializar el mapa centrado en Palomino
+        var map = L.map('mapa-interactivo').setView([11.2475, -73.5658], 14);
+
+        // 2. Cargar la capa base gratuita de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // 3. Recibir los datos de las propiedades desde PHP
+        var propiedades = <?= $json_mapa ?>;
+
+        // 4. Dibujar los pines en el mapa
+        propiedades.forEach(function(prop) {
+            // Asegurarnos de que los datos de latitud y longitud sean números
+            var lat = parseFloat(prop.latitud);
+            var lng = parseFloat(prop.longitud);
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+                // Formatear el precio
+                var precioText = "";
+                if(prop.precio_usd > 0) {
+                    precioText = "$" + Number(prop.precio_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + " USD";
+                } else if(prop.precio_cop > 0) {
+                    precioText = "$" + Number(prop.precio_cop).toLocaleString('es-CO') + " COP";
+                }
+
+                // Crear el contenido de la tarjetita al hacer clic (Popup)
+                var popupContenido = `
+                    <div style="text-align:center; width: 220px;">
+                        <img src="${prop.imagen_principal}" alt="${prop.titulo}" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
+                        <h4 style="margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; color: #333;">${prop.titulo}</h4>
+                        <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: bold; color: #008080;">${precioText}</p>
+                        <a href="propiedad.php?id=${prop.id}" style="display:block; background-color:#008080; color:white; padding:8px; text-decoration:none; border-radius:5px; font-weight:bold; font-size:12px;">VER PROPIEDAD</a>
+                    </div>
+                `;
+
+                // Agregar el pin al mapa con su tarjetita
+                L.marker([lat, lng]).addTo(map).bindPopup(popupContenido);
+            }
+        });
+    </script>
 </body>
 </html>
