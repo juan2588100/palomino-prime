@@ -55,56 +55,59 @@ $json_mapa = json_encode($propiedades_mapa);
     </header>
 
     <main>
-        <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px;">
+    <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px; position: relative; margin-bottom: 80px;">
+            
             <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">TU PARAÍSO ENTRE EL MAR Y EL RÍO</h1>
-            <p style="font-size: 20px; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Invierte en el paraíso entre el mar y la Sierra Nevada.</p>
-            <a href="#propiedades" class="btn" style="background-color: #008080; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">VER PROPIEDADES DESTACADAS</a>
-        </section>
+            <p style="font-size: 20px; margin-bottom: 60px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Invierte en el paraíso entre el mar y la Sierra Nevada.</p>
 
-        <section class="properties-section" id="propiedades">
-            <div class="container">
-                <h3>DESTACADAS</h3>
-                <div class="featured-properties-grid">
-                    <?php
-                    if ($resultado_destacadas->num_rows > 0) {
-                        while($prop = $resultado_destacadas->fetch_assoc()) {
-                            ?>
-                            <div class="property-card">
-                                <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                                <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
-                                
-                                <!-- PRECIOS DOBLES COP Y USD -->
-                                <div style="margin-bottom: 12px;">
-                                    <?php if (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0): ?>
-                                        <p class="price" style="margin: 0; font-size: 18px; color: #008080; font-weight: bold;">$<?= number_format($prop['precio_cop'], 0, ',', '.') ?> COP</p>
-                                    <?php endif; ?>
-                                    
-                                    <?php if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0): ?>
-                                        <p style="margin: 0; font-size: 14px; color: #666; font-weight: bold;">$<?= number_format($prop['precio_usd'], 2, '.', ',') ?> USD</p>
-                                    <?php endif; ?>
-                                </div>
+            <!-- INICIO DEL BUSCADOR ÉPICO FLOTANTE -->
+            <div class="epic-search-wrapper">
+                <form action="propiedades.php" method="GET" class="epic-search-bar">
+                    
+                    <!-- Filtro Ubicación -->
+                    <div class="search-group">
+                        <label><img src="https://img.icons8.com/ios/50/000000/marker--v1.png" alt="Ubicación"> UBICACIÓN</label>
+                        <select name="ubicacion">
+                            <option value="">Palomino, La Guajira</option>
+                            <option value="sierra">Sierra Nevada</option>
+                            <option value="playa">Frente al Mar</option>
+                        </select>
+                    </div>
 
-                                <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
-                                <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
-                                    <?php 
-                                    if (!empty($prop['area_m2'])) {
-                                        echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
-                                    }
-                                    if (!empty($prop['dimensiones'])) {
-                                        echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
-                                    }
-                                    ?>
-                                </div>
-                                <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
-                            </div>
-                            <?php
-                        }
-                    } else {
-                        echo "<p>No hay propiedades destacadas por el momento.</p>";
-                    }
-                    ?>
-                </div>
+                    <div class="search-divider"></div>
+
+                    <!-- Filtro Tipo de Propiedad -->
+                    <div class="search-group">
+                        <label><img src="https://img.icons8.com/ios/50/000000/home--v1.png" alt="Tipo"> TIPO DE PROPIEDAD</label>
+                        <select name="tipo">
+                            <option value="">Todos</option>
+                            <option value="lote">Lote</option>
+                            <option value="cabana">Cabaña</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+
+                    <div class="search-divider"></div>
+
+                    <!-- Filtro Rango de Precio -->
+                    <div class="search-group">
+                        <label><img src="https://img.icons8.com/ios/50/000000/us-dollar-circled--v1.png" alt="Precio"> RANGO DE PRECIO</label>
+                        <select name="precio">
+                            <option value="">Todos</option>
+                            <option value="bajo">Hasta $50,000 USD</option>
+                            <option value="medio">$50k - $100k USD</option>
+                            <option value="alto">Más de $100k USD</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón de Búsqueda -->
+                    <div class="search-button-group">
+                        <button type="submit">BUSCAR PROPIEDADES</button>
+                    </div>
+
+                </form>
             </div>
+            <!-- FIN DEL BUSCADOR ÉPICO -->
         </section>
 
         <section class="about-section-custom">
