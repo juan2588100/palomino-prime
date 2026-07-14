@@ -204,24 +204,28 @@ $json_mapa = json_encode($propiedades_mapa);
 
         // Datos desde PHP
         var propiedades = <?= $json_mapa ?>;
-
         propiedades.forEach(function(prop) {
             var lat = parseFloat(prop.latitud);
             var lng = parseFloat(prop.longitud);
 
             if (!isNaN(lat) && !isNaN(lng)) {
-                var precioText = "";
-                if(prop.precio_usd > 0) {
-                    precioText = "$" + Number(prop.precio_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + " USD";
-                } else if(prop.precio_cop > 0) {
-                    precioText = "$" + Number(prop.precio_cop).toLocaleString('es-CO') + " COP";
+                
+                // INICIO DE PRECIOS DOBLES PARA EL MAPA
+                var preciosBloque = '<div style="margin-bottom: 12px;">';
+                if(prop.precio_cop > 0) {
+                    preciosBloque += '<p style="margin: 0; font-size: 16px; color: #008080; font-weight: bold;">$' + Number(prop.precio_cop).toLocaleString('es-CO') + ' COP</p>';
                 }
+                if(prop.precio_usd > 0) {
+                    preciosBloque += '<p style="margin: 0; font-size: 13px; color: #666; font-weight: bold;">$' + Number(prop.precio_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</p>';
+                }
+                preciosBloque += '</div>';
+                // FIN DE PRECIOS DOBLES
 
                 var popupContenido = `
                     <div style="text-align:center; width: 220px; font-family: Arial, sans-serif;">
                         <img src="${prop.imagen_principal}" alt="${prop.titulo}" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
                         <h4 style="margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; color: #333;">${prop.titulo}</h4>
-                        <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: bold; color: #008080;">${precioText}</p>
+                        ${preciosBloque}
                         <a href="propiedad.php?id=${prop.id}" style="display:block; background-color:#008080; color:white; padding:8px; text-decoration:none; border-radius:5px; font-weight:bold; font-size:12px;">VER PROPIEDAD</a>
                     </div>
                 `;
