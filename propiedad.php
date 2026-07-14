@@ -74,8 +74,8 @@ $resultado_fotos = $conn->query($sql_fotos);
 
     <main class="contenedor-principal">
         
-        <div class="propiedad-header">
-            <h1><?= htmlspecialchars($propiedad['titulo']) ?></h1>
+    <div class="propiedad-header">
+            <h1 style="text-transform: uppercase;"><?= htmlspecialchars($propiedad['titulo']) ?></h1>
             <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
         </div>
 
