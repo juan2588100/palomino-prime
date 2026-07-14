@@ -116,7 +116,7 @@ $json_mapa = json_encode($propiedades_mapa);
         <!-- SECCIÓN: MÁS QUE INMOBILIARIA -->
         <section class="about-section-custom">
             <div class="container">
-                <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
+                <h3>PALOMINO MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
                 <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
                 
                 <!-- Grid de Iconos -->

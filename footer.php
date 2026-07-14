@@ -3,7 +3,7 @@
             <!-- Columna 1: Marca y descripción -->
             <div class="footer-col brand-col">
                 <!-- Usamos tu logo blanco o dejamos el texto si prefieres -->
-                <h3 class="footer-logo">PALOMINO <span>PRIME</span></h3>
+                <h3 class="footer-logo">PALOMINO <span> MAR & RÍO</span></h3>
                 <p>Tu agencia inmobiliaria de confianza. Te guiamos en cada paso para asegurar tu inversión en el paraíso entre el mar Caribe y la majestuosa Sierra Nevada.</p>
             </div>
 
@@ -38,6 +38,6 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© <?= date('Y') ?> Palomino Prime Mar y Río. Todos los derechos reservados.</p>
+            <p>© <?= date('Y') ?> Palomino  Mar & Río. Todos los derechos reservados.</p>
         </div>
     </footer>
