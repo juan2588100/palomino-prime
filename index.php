@@ -32,6 +32,7 @@ $json_mapa = json_encode($propiedades_mapa);
     
     <!-- Librería CSS de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -61,6 +62,18 @@ $json_mapa = json_encode($propiedades_mapa);
             <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">TU PARAÍSO ENTRE EL MAR Y EL RÍO</h1>
             <p style="font-size: 20px; margin-bottom: 60px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Invierte en el paraíso entre el mar y la Sierra Nevada.</p>
 
+          <!-- HERO Y BUSCADOR ÉPICO -->
+        <section class="hero" style="background-image: url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 85vh; position: relative; margin-bottom: 80px; display: flex; align-items: center;">
+            
+            <div class="hero-text-container">
+                <span class="hero-script">Vive tu sueño en</span>
+                <h1 class="hero-title">PALOMINO</h1>
+                <div class="hero-divider"></div>
+                <p class="hero-subtitle">Donde el mar Caribe se encuentra<br>con la Sierra Nevada.</p>
+                <img src="https://img.icons8.com/ios/100/1a332b/palm-tree.png" alt="Palomino Ícono" class="hero-icon">
+            </div>
+
+            <!-- INICIO DEL BUSCADOR ÉPICO FLOTANTE -->
             <div class="epic-search-wrapper">
                 <form action="propiedades.php" method="GET" class="epic-search-bar">
                     <div class="search-group">
@@ -96,6 +109,7 @@ $json_mapa = json_encode($propiedades_mapa);
                     </div>
                 </form>
             </div>
+            <!-- FIN DEL BUSCADOR ÉPICO -->
         </section>
 
         <!-- SECCIÓN DE DESTACADAS -->
