@@ -140,10 +140,25 @@ $resultado_fotos = $conn->query($sql_fotos);
 
             <aside class="sticky-sidebar">
                 <div class="tarjeta-reserva">
-                    <p class="precio-usd">$<?= number_format($propiedad['precio_usd'], 0, ',', '.') ?> USD</p>
-                    <p class="precio-cop">$<?= number_format($propiedad['precio_cop'], 0, ',', '.') ?> COP</p>
+                    
+                    <!-- INICIO DE PRECIOS DOBLES (COP PRIMERO) -->
+                    <div style="margin-bottom: 20px;">
+                        <?php if (!empty($propiedad['precio_cop']) && $propiedad['precio_cop'] > 0): ?>
+                            <h2 style="margin: 0; font-size: 32px; color: #333; font-weight: bold;">
+                                $<?= number_format($propiedad['precio_cop'], 0, ',', '.') ?> COP
+                            </h2>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($propiedad['precio_usd']) && $propiedad['precio_usd'] > 0): ?>
+                            <p style="margin: 5px 0 0 0; font-size: 16px; color: #888; font-weight: bold;">
+                                $<?= number_format($propiedad['precio_usd'], 2, '.', ',') ?> USD
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                    <!-- FIN DE PRECIOS DOBLES -->
+
                     <hr>
-                    <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20la%20propiedad:%20<?= urlencode($propiedad['titulo']) ?>" target="_blank" class="btn btn-primary btn-contacto">CONTACTAR POR WHATSAPP</a>
+                    <a href="https://wa.me/573000000000?text=Hola,%20me%20interesa%20la%20propiedad:%20<?= urlencode($propiedad['titulo']) ?>" target="_blank" class="btn btn-primary btn-contacto" style="background-color: #008080; border-color: #008080;">CONTACTAR POR WHATSAPP</a>
                 </div>
             </aside>
         </div>
