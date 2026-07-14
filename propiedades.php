@@ -169,7 +169,7 @@ $resultado_todas = $conn->query($sql_todas);
         </section>
     </main>
 
-    <?php include 'footer.php'; ?>
+    
 
    
 </body>
