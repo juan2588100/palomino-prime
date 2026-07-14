@@ -45,26 +45,24 @@ $json_mapa = json_encode($propiedades_mapa);
             <nav>
                 <ul>
                     <li><a href="index.php">INICIO</a></li>
-                    <li><a href="#">NOSOTROS</a></li>
+                    <li><a href="#nosotros">NOSOTROS</a></li>
                     <li><a href="propiedades.php">PROPIEDADES</a></li>
-                    <li><a href="#">PALOMINO</a></li>
-                    <li><a href="#">CONTACTO</a></li>
+                    <li><a href="#palomino">PALOMINO</a></li>
+                    <li><a href="#contacto">CONTACTO</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-    <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px; position: relative; margin-bottom: 80px;">
+        <!-- HERO Y BUSCADOR ÉPICO -->
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 75vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px; position: relative; margin-bottom: 80px;">
             
             <h1 style="font-size: 48px; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">TU PARAÍSO ENTRE EL MAR Y EL RÍO</h1>
             <p style="font-size: 20px; margin-bottom: 60px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6);">Invierte en el paraíso entre el mar y la Sierra Nevada.</p>
 
-            <!-- INICIO DEL BUSCADOR ÉPICO FLOTANTE -->
             <div class="epic-search-wrapper">
                 <form action="propiedades.php" method="GET" class="epic-search-bar">
-                    
-                    <!-- Filtro Ubicación -->
                     <div class="search-group">
                         <label><img src="https://img.icons8.com/ios/50/000000/marker--v1.png" alt="Ubicación"> UBICACIÓN</label>
                         <select name="ubicacion">
@@ -73,10 +71,7 @@ $json_mapa = json_encode($propiedades_mapa);
                             <option value="playa">Frente al Mar</option>
                         </select>
                     </div>
-
                     <div class="search-divider"></div>
-
-                    <!-- Filtro Tipo de Propiedad -->
                     <div class="search-group">
                         <label><img src="https://img.icons8.com/ios/50/000000/home--v1.png" alt="Tipo"> TIPO DE PROPIEDAD</label>
                         <select name="tipo">
@@ -86,10 +81,7 @@ $json_mapa = json_encode($propiedades_mapa);
                             <option value="villa">Villa</option>
                         </select>
                     </div>
-
                     <div class="search-divider"></div>
-
-                    <!-- Filtro Rango de Precio -->
                     <div class="search-group">
                         <label><img src="https://img.icons8.com/ios/50/000000/us-dollar-circled--v1.png" alt="Precio"> RANGO DE PRECIO</label>
                         <select name="precio">
@@ -99,18 +91,62 @@ $json_mapa = json_encode($propiedades_mapa);
                             <option value="alto">Más de $100k USD</option>
                         </select>
                     </div>
-
-                    <!-- Botón de Búsqueda -->
                     <div class="search-button-group">
                         <button type="submit">BUSCAR PROPIEDADES</button>
                     </div>
-
                 </form>
             </div>
-            <!-- FIN DEL BUSCADOR ÉPICO -->
         </section>
 
-        <section class="about-section-custom">
+        <!-- SECCIÓN DE DESTACADAS -->
+        <section class="properties-section" id="propiedades">
+            <div class="container">
+                <h3>DESTACADAS</h3>
+                <div class="featured-properties-grid">
+                    <?php
+                    if ($resultado_destacadas->num_rows > 0) {
+                        while($prop = $resultado_destacadas->fetch_assoc()) {
+                            ?>
+                            <div class="property-card">
+                                <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
+                                <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
+                                
+                                <!-- PRECIOS DOBLES COP Y USD -->
+                                <div style="margin-bottom: 12px;">
+                                    <?php if (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0): ?>
+                                        <p class="price" style="margin: 0; font-size: 18px; color: #008080; font-weight: bold;">$<?= number_format($prop['precio_cop'], 0, ',', '.') ?> COP</p>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0): ?>
+                                        <p style="margin: 0; font-size: 14px; color: #666; font-weight: bold;">$<?= number_format($prop['precio_usd'], 2, '.', ',') ?> USD</p>
+                                    <?php endif; ?>
+                                </div>
+
+                                <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
+                                <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
+                                    <?php 
+                                    if (!empty($prop['area_m2'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Área:</strong> " . htmlspecialchars($prop['area_m2']) . " m²</p>";
+                                    }
+                                    if (!empty($prop['dimensiones'])) {
+                                        echo "<p style='margin: 3px 0;'><strong>Dimensiones:</strong> " . htmlspecialchars($prop['dimensiones']) . "</p>";
+                                    }
+                                    ?>
+                                </div>
+                                <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "<p>No hay propiedades destacadas por el momento.</p>";
+                    }
+                    ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÁS QUE INMOBILIARIA -->
+        <section class="about-section-custom" id="nosotros">
             <div class="container">
                 <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
                 <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
@@ -181,7 +217,8 @@ $json_mapa = json_encode($propiedades_mapa);
             </div>
         </section>
 
-        <section class="map-section">
+        <!-- MAPA -->
+        <section class="map-section" id="palomino">
             <div class="container">
                 <h3>EXPLORA NUESTRO MAPA DE PROPIEDADES</h3>
                 <div id="mapa-interactivo" style="width: 100%; height: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #008080;"></div>
@@ -199,7 +236,7 @@ $json_mapa = json_encode($propiedades_mapa);
         // Inicializar el mapa centrado en Palomino
         var map = L.map('mapa-interactivo').setView([11.2475, -73.5658], 14);
 
-        // Capa de mapa Premium (Estilo claro/limpio similar a Google)
+        // Capa de mapa Premium
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap contributors © CARTO'
@@ -207,13 +244,14 @@ $json_mapa = json_encode($propiedades_mapa);
 
         // Datos desde PHP
         var propiedades = <?= $json_mapa ?>;
+
         propiedades.forEach(function(prop) {
             var lat = parseFloat(prop.latitud);
             var lng = parseFloat(prop.longitud);
 
             if (!isNaN(lat) && !isNaN(lng)) {
                 
-                // INICIO DE PRECIOS DOBLES PARA EL MAPA
+                // PRECIOS DOBLES PARA EL MAPA
                 var preciosBloque = '<div style="margin-bottom: 12px;">';
                 if(prop.precio_cop > 0) {
                     preciosBloque += '<p style="margin: 0; font-size: 16px; color: #008080; font-weight: bold;">$' + Number(prop.precio_cop).toLocaleString('es-CO') + ' COP</p>';
@@ -222,7 +260,6 @@ $json_mapa = json_encode($propiedades_mapa);
                     preciosBloque += '<p style="margin: 0; font-size: 13px; color: #666; font-weight: bold;">$' + Number(prop.precio_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + ' USD</p>';
                 }
                 preciosBloque += '</div>';
-                // FIN DE PRECIOS DOBLES
 
                 var popupContenido = `
                     <div style="text-align:center; width: 220px; font-family: Arial, sans-serif;">
