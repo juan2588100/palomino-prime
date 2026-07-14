@@ -30,7 +30,7 @@ $json_mapa = json_encode($propiedades_mapa);
     <title>Palomino Prime - Mar y Río | Tu Inmobiliaria en Palomino</title>
     <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
     
-    <!-- Librería CSS del Mapa Interactivo (Leaflet) -->
+    <!-- Librería CSS de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
@@ -66,28 +66,25 @@ $json_mapa = json_encode($propiedades_mapa);
                 <h3>DESTACADAS</h3>
                 <div class="featured-properties-grid">
                     <?php
-                    // Si hay propiedades destacadas en la base de datos, las muestra
                     if ($resultado_destacadas->num_rows > 0) {
                         while($prop = $resultado_destacadas->fetch_assoc()) {
-                            
-                            // Formatear el precio para que diferencie USD o COP
-                            $precio_mostrar = "";
-                            if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0) {
-                                $precio_mostrar = "$" . number_format($prop['precio_usd'], 2, '.', ',') . " USD";
-                            } elseif (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0) {
-                                $precio_mostrar = "$" . number_format($prop['precio_cop'], 0, ',', '.') . " COP";
-                            }
                             ?>
-                            
                             <div class="property-card">
                                 <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
-                                
                                 <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
                                 
-                                <p class="price"><?= $precio_mostrar ?></p>
+                                <!-- PRECIOS DOBLES COP Y USD -->
+                                <div style="margin-bottom: 12px;">
+                                    <?php if (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0): ?>
+                                        <p class="price" style="margin: 0; font-size: 18px; color: #008080; font-weight: bold;">$<?= number_format($prop['precio_cop'], 0, ',', '.') ?> COP</p>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0): ?>
+                                        <p style="margin: 0; font-size: 14px; color: #666; font-weight: bold;">$<?= number_format($prop['precio_usd'], 2, '.', ',') ?> USD</p>
+                                    <?php endif; ?>
+                                </div>
+
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
-                                
-                                <!-- INICIO DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
                                 <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
                                     <?php 
                                     if (!empty($prop['area_m2'])) {
@@ -98,11 +95,8 @@ $json_mapa = json_encode($propiedades_mapa);
                                     }
                                     ?>
                                 </div>
-                                <!-- FIN DEL CÓDIGO INTELIGENTE DE MEDIDAS -->
-
                                 <a href="propiedad.php?id=<?= $prop['id'] ?>" class="btn btn-secondary">MÁS DETALLES</a>
                             </div>
-                            
                             <?php
                         }
                     } else {
@@ -113,13 +107,11 @@ $json_mapa = json_encode($propiedades_mapa);
             </div>
         </section>
 
-        <!-- SECCIÓN: MÁS QUE INMOBILIARIA -->
         <section class="about-section-custom">
             <div class="container">
-                <h3>PALOMINO MAR & RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
+                <h3>PALOMINO PRIME MAR Y RÍO:<br><span>MÁS QUE INMOBILIARIA</span></h3>
                 <p class="intro-text">Nuestra agencia inmobiliaria se especializa en ofrecer propiedades únicas y exclusivas en el hermoso Palomino, donde la majestuosa Sierra Nevada se encuentra con el mar Caribe. Estamos comprometidos en ayudarte a encontrar tu hogar ideal en este entorno natural excepcional.</p>
                 
-                <!-- Grid de Iconos -->
                 <div class="features-grid">
                     <div class="feature-item">
                         <img src="https://img.icons8.com/ios/100/00635d/palm-tree.png" alt="Expertos Locales">
@@ -153,7 +145,6 @@ $json_mapa = json_encode($propiedades_mapa);
                     </div>
                 </div>
 
-                <!-- Barra Píldora de Estadísticas -->
                 <div class="stats-bar-verde">
                     <div class="stat-item">
                         <img src="https://img.icons8.com/ios/100/ffffff/home--v1.png" alt="Propiedades">
@@ -190,40 +181,35 @@ $json_mapa = json_encode($propiedades_mapa);
         <section class="map-section">
             <div class="container">
                 <h3>EXPLORA NUESTRO MAPA DE PROPIEDADES</h3>
-                
-                <!-- AQUI VA EL NUEVO MAPA INTERACTIVO -->
                 <div id="mapa-interactivo" style="width: 100%; height: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #008080;"></div>
-                
             </div>
         </section>
     </main>
 
+    <!-- INCLUSIÓN DEL FOOTER MODULAR -->
     <?php include 'footer.php'; ?>
-    <!-- Librería JS del Mapa Interactivo (Leaflet) -->
+
+    <!-- Librería JS de Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     
-    <!-- Script para dibujar el mapa y los pines -->
     <script>
-        // 1. Inicializar el mapa centrado en Palomino
+        // Inicializar el mapa centrado en Palomino
         var map = L.map('mapa-interactivo').setView([11.2475, -73.5658], 14);
 
-        // 2. Cargar la capa base gratuita de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Capa de mapa Premium (Estilo claro/limpio similar a Google)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap'
+            attribution: '© OpenStreetMap contributors © CARTO'
         }).addTo(map);
 
-        // 3. Recibir los datos de las propiedades desde PHP
+        // Datos desde PHP
         var propiedades = <?= $json_mapa ?>;
 
-        // 4. Dibujar los pines en el mapa
         propiedades.forEach(function(prop) {
-            // Asegurarnos de que los datos de latitud y longitud sean números
             var lat = parseFloat(prop.latitud);
             var lng = parseFloat(prop.longitud);
 
             if (!isNaN(lat) && !isNaN(lng)) {
-                // Formatear el precio
                 var precioText = "";
                 if(prop.precio_usd > 0) {
                     precioText = "$" + Number(prop.precio_usd).toLocaleString('en-US', {minimumFractionDigits: 2}) + " USD";
@@ -231,9 +217,8 @@ $json_mapa = json_encode($propiedades_mapa);
                     precioText = "$" + Number(prop.precio_cop).toLocaleString('es-CO') + " COP";
                 }
 
-                // Crear el contenido de la tarjetita al hacer clic (Popup)
                 var popupContenido = `
-                    <div style="text-align:center; width: 220px;">
+                    <div style="text-align:center; width: 220px; font-family: Arial, sans-serif;">
                         <img src="${prop.imagen_principal}" alt="${prop.titulo}" style="width:100%; height:130px; object-fit:cover; border-radius:8px; margin-bottom:10px;">
                         <h4 style="margin: 0 0 5px 0; font-size: 14px; text-transform: uppercase; color: #333;">${prop.titulo}</h4>
                         <p style="margin: 0 0 12px 0; font-size: 15px; font-weight: bold; color: #008080;">${precioText}</p>
@@ -241,7 +226,6 @@ $json_mapa = json_encode($propiedades_mapa);
                     </div>
                 `;
 
-                // Agregar el pin al mapa con su tarjetita
                 L.marker([lat, lng]).addTo(map).bindPopup(popupContenido);
             }
         });

@@ -15,7 +15,6 @@ $condiciones = [];
 
 // Si el usuario escribió algo en la barra clásica
 if (!empty($busqueda)) {
-    // Busca en el título, ubicación o descripción
     $condiciones[] = "(titulo LIKE '%$busqueda%' OR ubicacion_texto LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%')";
 }
 
@@ -110,7 +109,7 @@ $resultado_todas = $conn->query($sql_todas);
                             <button type="submit" class="btn" style="background-color: #008080; color: white; padding: 12px 25px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">BUSCAR</button>
                         </div>
 
-                        <!-- Botón Limpiar (Solo aparece si el usuario hizo una búsqueda) -->
+                        <!-- Botón Limpiar -->
                         <?php if(!empty($busqueda) || $ordenar != 'reciente'): ?>
                             <div>
                                 <a href="propiedades.php" style="display: inline-block; padding: 12px 20px; color: #555; text-decoration: none; border: 1px solid #ddd; border-radius: 6px; background: white;">Limpiar Filtros</a>
@@ -125,20 +124,24 @@ $resultado_todas = $conn->query($sql_todas);
                     <?php
                     if ($resultado_todas->num_rows > 0) {
                         while($prop = $resultado_todas->fetch_assoc()) {
-                            
-                            $precio_mostrar = "";
-                            if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0) {
-                                $precio_mostrar = "$" . number_format($prop['precio_usd'], 0, ',', '.') . " USD";
-                            } elseif (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0) {
-                                $precio_mostrar = "$" . number_format($prop['precio_cop'], 0, ',', '.') . " COP";
-                            }
                             ?>
                             
                             <div class="property-card">
                                 <img src="<?= htmlspecialchars($prop['imagen_principal']) ?>" alt="<?= htmlspecialchars($prop['titulo']) ?>" style="width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; margin-bottom: 15px;">
                                 
                                 <h4 style="text-transform: uppercase;"><?= htmlspecialchars($prop['titulo']) ?></h4>
-                                <p class="price"><?= $precio_mostrar ?></p>
+                                
+                                <!-- PRECIOS DOBLES COP Y USD -->
+                                <div style="margin-bottom: 12px;">
+                                    <?php if (!empty($prop['precio_cop']) && $prop['precio_cop'] > 0): ?>
+                                        <p class="price" style="margin: 0; font-size: 18px; color: #008080; font-weight: bold;">$<?= number_format($prop['precio_cop'], 0, ',', '.') ?> COP</p>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (!empty($prop['precio_usd']) && $prop['precio_usd'] > 0): ?>
+                                        <p style="margin: 0; font-size: 14px; color: #666; font-weight: bold;">$<?= number_format($prop['precio_usd'], 2, '.', ',') ?> USD</p>
+                                    <?php endif; ?>
+                                </div>
+                                
                                 <p class="location">Ubicación: <?= htmlspecialchars($prop['ubicacion_texto']) ?></p>
                                 
                                 <div class="medidas-propiedad" style="font-size: 13px; color: #444; margin-bottom: 15px;">
@@ -169,9 +172,9 @@ $resultado_todas = $conn->query($sql_todas);
         </section>
     </main>
 
+    <!-- INCLUSIÓN DEL FOOTER MODULAR -->
     <?php include 'footer.php'; ?>
 
-   
 </body>
 </html>
 
