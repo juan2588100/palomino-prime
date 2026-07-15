@@ -14,7 +14,7 @@
                     <li><a href="index.php">Inicio</a></li>
                     <li><a href="index.php#propiedades">Propiedades Destacadas</a></li>
                     <li><a href="propiedades.php">Catálogo Completo</a></li>
-                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="index.php#nosotros">Sobre Nosotros</a></li>
                 </ul>
             </div>
 
