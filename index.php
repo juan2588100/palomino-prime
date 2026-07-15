@@ -227,10 +227,11 @@ $json_mapa = json_encode($propiedades_mapa);
         // Inicializar el mapa centrado en Palomino
         var map = L.map('mapa-interactivo').setView([11.2475, -73.5658], 14);
 
-        // Capa de mapa Premium
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap contributors © CARTO'
+       // Capa de mapa estilo Google Maps a color
+       L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            attribution: '© Google Maps'
         }).addTo(map);
 
         // Datos desde PHP
