@@ -49,7 +49,7 @@ $resultado_fotos = $conn->query($sql_fotos);
     </style>
 </head>
 <body>
-<?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 
     <main class="contenedor-principal">
         
