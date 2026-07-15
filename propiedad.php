@@ -33,27 +33,22 @@ $resultado_fotos = $conn->query($sql_fotos);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($propiedad['titulo']) ?> | Palomino Prime</title>
+    
+    <!-- Fuentes tipográficas -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="propiedad.css">
+    
+    <!-- Archivos CSS -->
     <link rel="stylesheet" href="style.css?v=<?= time(); ?>">
     <link rel="stylesheet" href="propiedad.css?v=<?= time(); ?>">
-
-    <style>
-        header {
-            position: static !important;
-            box-shadow: none !important;
-            background: transparent !important;
-            padding: 0 !important;
-        }
-    </style>
 </head>
 <body>
+    <!-- INCLUSIÓN DEL HEADER MODULAR -->
     <?php include 'header.php'; ?>
 
     <main class="contenedor-principal">
         
-    <div class="propiedad-header">
+        <div class="propiedad-header">
             <h1 style="text-transform: uppercase;"><?= htmlspecialchars($propiedad['titulo']) ?></h1>
             <p class="ubicacion">📍 <?= htmlspecialchars($propiedad['ubicacion_texto']) ?></p>
         </div>
