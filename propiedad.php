@@ -49,28 +49,7 @@ $resultado_fotos = $conn->query($sql_fotos);
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="index.php" style="display: flex !important; align-items: center !important; gap: 15px !important; text-decoration: none; float: left; margin-top: 5px;">
-                <picture>
-                    <!-- Pantallas medianas y grandes (Tablets y Escritorio: 768px o más) -->
-                    <source media="(min-width: 768px)" srcset="img/palomino-LOGO-MAR-Y-RIO.png">
-                    <!-- Pantallas pequeñas (Celulares: se carga por defecto) -->
-                    <img src="img/palomino.png" alt="Palomino Mar y Río" style="max-height: 100px !important; width: auto !important; object-fit: contain !important; display: block !important;">
-                </picture>
-            </a>
-            
-            <nav>
-                <ul>
-                    <li><a href="index.php">INICIO</a></li>
-                    <li><a href="index.php#nosotros">NOSOTROS</a></li>
-                    <li><a href="propiedades.php">PROPIEDADES</a></li>
-                    <li><a href="index.php#palomino">PALOMINO</a></li>
-                    <li><a href="index.php#contacto">CONTACTO</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<?php include 'header.php'; ?>
 
     <main class="contenedor-principal">
         

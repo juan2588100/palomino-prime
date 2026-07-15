@@ -12,43 +12,115 @@ body {
 }
 
 /* =========================================
-   ESTILOS DEL LOGO EN EL HEADER
+   HEADER PREMIUM MODULAR
 ========================================= */
-header .logo {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px !important;
+.header-premium {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Sombra elegante */
+    position: sticky; /* Hace que el menú persiga al usuario al bajar */
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    float: left;
 }
 
-header .logo-img {
-    max-height: 60px !important;
-    width: auto !important;
-    object-fit: contain !important;
-    display: block !important;
+.logo-img {
+    max-height: 70px !important;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-header nav {
-    float: right;
+.logo-link:hover .logo-img {
+    transform: scale(1.02); /* Pequeño zoom al tocar el logo */
 }
 
-header nav ul {
+/* Enlaces del Menú */
+.main-nav ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 
-header nav ul li {
-    display: inline;
-    margin-left: 20px;
-}
-
-header nav ul li a {
+.main-nav ul li a {
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    color: #333333;
+    font-weight: 600;
     font-size: 14px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Efecto de subrayado verde animado */
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #008080;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.main-nav ul li a:hover {
+    color: #008080;
+}
+
+.main-nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Botón de Contacto */
+.btn-header {
+    background-color: #008080;
+    color: #ffffff !important;
+    padding: 12px 26px;
+    border-radius: 25px; /* Forma de píldora moderna */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.btn-header:hover {
+    background-color: #00635d;
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Adaptación fluida para móviles y tablets */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 0;
+    }
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
 }
 
 /* =========================================
