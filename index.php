@@ -67,7 +67,7 @@ $json_mapa = json_encode($propiedades_mapa);
                 <h1 class="hero-title">PALOMINO</h1>
                 <div class="hero-divider"></div>
                 <p class="hero-subtitle">Donde el mar Caribe se encuentra<br>con la Sierra Nevada.</p>
-                <img src="https://img.icons8.com/ios/100/1a332b/palm-tree.png" alt="Palomino Ícono" class="hero-icon">
+                
             </div>
 
             <div class="epic-search-wrapper">
