@@ -42,7 +42,7 @@ $json_mapa = json_encode($propiedades_mapa);
 
     <main>
         <!-- HERO Y BUSCADOR ÉPICO -->
-        <section class="hero" style="background-image: url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 85vh; position: relative; margin-bottom: 80px; display: flex; align-items: center;">
+        <section class="hero" style="background-image: url('img/banner.png') !important; background-size: cover !important; background-position: center !important; background-repeat: no-repeat !important; min-height: 65vh; position: relative; margin-bottom: 80px; display: flex; align-items: center;">
             
             <div class="hero-text-container">
                 <span class="hero-script">Vive tu sueño en</span>
