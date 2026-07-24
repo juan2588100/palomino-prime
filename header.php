@@ -3,8 +3,8 @@
         <!-- Logotipo -->
         <a href="index.php" class="logo-link">
             <picture>
-                <source media="(min-width: 768px)" srcset="img/palomino-LOGO-MAR-Y-RIO.png">
-                <img src="img/palomino.png" alt="Palomino Mar y Río" class="logo-img">
+                <source media="(min-width: 768px)" srcset="img/logo-desktop.png">
+                <img src="img/logo-mobile.png" alt="Palomino Mar y Río" class="logo-img">
             </picture>
         </a>
         
