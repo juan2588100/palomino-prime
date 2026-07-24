@@ -745,11 +745,11 @@ body {
    CORRECCIONES MÓVILES (CARRUSEL Y LOGO)
 ========================================= */
 @media (max-width: 768px) {
-    /* 1. Aumentar significativamente el tamaño del logo en móviles */
+    /* 1. Aumentar significativamente el tamaño del logo en móviles (Incrementado 20% más) */
     .logo-img {
-        max-height: 160px !important;
-        width: 75vw !important;
-        max-width: 300px !important;
+        max-height: 192px !important;
+        width: 90vw !important;
+        max-width: 360px !important;
         object-fit: contain;
     }
 
