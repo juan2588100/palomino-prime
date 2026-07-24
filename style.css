@@ -149,19 +149,19 @@ body {
 .hero-script {
     font-family: 'Great Vibes', cursive;
     font-size: 65px;
-    color: #ffffff; /* Cambiado a blanco puro */
+    color: #ffffff; /* Blanco puro para destacar */
     display: block;
     margin-bottom: -15px;
     margin-left: 15px;
     font-weight: normal;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra suave para separar del fondo */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Sombra suave */
 }
 
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: 95px;
     font-weight: 700;
-    color: #ffffff; /* Cambiado a blanco puro */
+    color: #ffffff; /* Blanco puro para destacar */
     margin: 0;
     letter-spacing: 1px;
     line-height: 1.1;
@@ -171,20 +171,20 @@ body {
 .hero-divider {
     width: 100%;
     max-width: 320px;
-    height: 2px; /* Ligeramente más gruesa para que destaque */
-    background-color: #b5a48b; /* Mantenemos el dorado elegante */
+    height: 2px;
+    background-color: #b5a48b;
     margin: 25px 0;
     box-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Sombra en la línea */
 }
 
 .hero-subtitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 22px; /* Un poco más grande para mejor legibilidad */
-    font-weight: 500; /* Letra un poco más gruesa */
+    font-size: 22px;
+    font-weight: 500;
     color: #f6f5ef; /* Un blanco crema cálido */
     line-height: 1.5;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* Sombra bien oscura para que se lea perfecto sobre el mar */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9); /* Sombra bien oscura para legibilidad máxima */
 }
 
 .hero-icon {
@@ -745,9 +745,12 @@ body {
    CORRECCIONES MÓVILES (CARRUSEL Y LOGO)
 ========================================= */
 @media (max-width: 768px) {
-    /* 1. Aumentar el tamaño del logo en móviles */
+    /* 1. Aumentar significativamente el tamaño del logo en móviles */
     .logo-img {
-        max-height: 100px !important;
+        max-height: 160px !important;
+        width: 75vw !important;
+        max-width: 300px !important;
+        object-fit: contain;
     }
 
     /* 2. Convertir el grid de propiedades destacadas en un carrusel horizontal */
