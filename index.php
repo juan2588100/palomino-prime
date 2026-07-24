@@ -93,7 +93,8 @@ $json_mapa = json_encode($propiedades_mapa);
         <section class="properties-section" id="propiedades">
             <div class="container">
                 <h3>DESTACADAS</h3>
-                <div class="featured-properties-grid">
+                <!-- Se agregó el id="carrusel-destacadas" para el script de JS -->
+                <div class="featured-properties-grid" id="carrusel-destacadas">
                     <?php
                     if ($resultado_destacadas->num_rows > 0) {
                         while($prop = $resultado_destacadas->fetch_assoc()) {
@@ -263,6 +264,51 @@ $json_mapa = json_encode($propiedades_mapa);
                 `;
 
                 L.marker([lat, lng]).addTo(map).bindPopup(popupContenido);
+            }
+        });
+    </script>
+
+    <!-- Script para Auto-Scroll del Carrusel Móvil -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const carrusel = document.getElementById('carrusel-destacadas');
+            let autoScrollTimer;
+
+            function startScroll() {
+                // Solo activamos el auto-scroll en pantallas móviles (<= 768px)
+                if (window.innerWidth <= 768 && carrusel) {
+                    autoScrollTimer = setInterval(() => {
+                        const maxScroll = carrusel.scrollWidth - carrusel.clientWidth;
+                        
+                        // Si ya llegó al final (con un pequeño margen de 5px), vuelve al inicio
+                        if (carrusel.scrollLeft >= maxScroll - 5) {
+                            carrusel.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            // Toma el ancho de la primera tarjeta + el gap (15px) para avanzar
+                            const tarjeta = carrusel.querySelector('.property-card');
+                            if(tarjeta) {
+                                const avance = tarjeta.clientWidth + 15;
+                                carrusel.scrollBy({ left: avance, behavior: 'smooth' });
+                            }
+                        }
+                    }, 3500); // Tiempo de espera en milisegundos (3.5 segundos por tarjeta)
+                }
+            }
+
+            // Iniciar el bucle
+            startScroll();
+
+            // Experiencia de Usuario: Detener el auto-scroll si el usuario toca la pantalla
+            if(carrusel) {
+                carrusel.addEventListener('touchstart', () => {
+                    clearInterval(autoScrollTimer);
+                }, { passive: true });
+                
+                // Reanudar el auto-scroll 4 segundos después de que el usuario deje de tocar
+                carrusel.addEventListener('touchend', () => {
+                    clearInterval(autoScrollTimer); // Limpiar cualquier contador previo
+                    setTimeout(startScroll, 4000);
+                }, { passive: true });
             }
         });
     </script>
