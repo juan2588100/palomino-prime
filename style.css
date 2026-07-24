@@ -16,8 +16,8 @@ body {
 ========================================= */
 .header-premium {
     background-color: #ffffff;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Sombra elegante */
-    position: sticky; /* Hace que el menú persiga al usuario al bajar */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: sticky;
     top: 0;
     z-index: 1000;
     padding: 10px 0;
@@ -44,10 +44,9 @@ body {
 }
 
 .logo-link:hover .logo-img {
-    transform: scale(1.02); /* Pequeño zoom al tocar el logo */
+    transform: scale(1.02);
 }
 
-/* Enlaces del Menú */
 .main-nav ul {
     list-style: none;
     margin: 0;
@@ -68,7 +67,6 @@ body {
     padding-bottom: 5px;
 }
 
-/* Efecto de subrayado verde animado */
 .main-nav ul li a::after {
     content: '';
     position: absolute;
@@ -89,12 +87,11 @@ body {
     width: 100%;
 }
 
-/* Botón de Contacto */
 .btn-header {
     background-color: #008080;
     color: #ffffff !important;
     padding: 12px 26px;
-    border-radius: 25px; /* Forma de píldora moderna */
+    border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
     font-size: 13px;
@@ -109,7 +106,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Adaptación fluida para móviles y tablets */
 @media (max-width: 992px) {
     .header-container {
         flex-direction: column;
@@ -126,7 +122,7 @@ body {
 /* =========================================
    HERO / BANNER PRINCIPAL
 ========================================= */
-hero {
+.hero {
     background-image: url('img/banner-nuevo.png?v=1');
     background-size: cover;
     background-position: center 85%;
@@ -141,17 +137,17 @@ hero {
 .hero-text-container {
     text-align: left;
     max-width: 600px;
-    padding-left: 10%; /* Da el margen desde la izquierda */
-    margin-top: -120px; /* Sube un poco el texto para no chocar con el buscador */
+    padding-left: 10%;
+    margin-top: -120px;
     z-index: 2;
 }
 
 .hero-script {
     font-family: 'Great Vibes', cursive;
     font-size: 65px;
-    color: #1a332b; /* Verde oscuro elegante */
+    color: #1a332b;
     display: block;
-    margin-bottom: -15px; /* Acerca el título grande */
+    margin-bottom: -15px;
     margin-left: 15px;
     font-weight: normal;
 }
@@ -170,7 +166,7 @@ hero {
     width: 100%;
     max-width: 320px;
     height: 1px;
-    background-color: #b5a48b; /* Tono arena/oro del diseño */
+    background-color: #b5a48b;
     margin: 25px 0;
 }
 
@@ -178,10 +174,10 @@ hero {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 400;
-    color: #2b3a35; /* Gris oscuro verdoso */
+    color: #2b3a35;
     line-height: 1.5;
     margin-bottom: 30px;
-    text-shadow: none; /* Quitamos la sombra para que se vea limpio */
+    text-shadow: none;
 }
 
 .hero-icon {
@@ -210,7 +206,7 @@ hero {
         font-size: 16px;
     }
     .hero-subtitle br {
-        display: none; /* En móvil el texto fluye natural */
+        display: none;
     }
 }
 
@@ -219,7 +215,7 @@ hero {
 ========================================= */
 .epic-search-wrapper {
     position: absolute;
-    bottom: -45px; /* Hace que el buscador flote mitad en la imagen y mitad fuera */
+    bottom: -45px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -228,7 +224,7 @@ hero {
 }
 
 .epic-search-bar {
-    background-color: #f6f5ef; /* Tono crema del diseño */
+    background-color: #f6f5ef;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -270,7 +266,7 @@ hero {
     font-weight: 500;
     outline: none;
     cursor: pointer;
-    appearance: none; /* Oculta la flecha por defecto del sistema */
+    appearance: none;
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right center;
@@ -282,7 +278,7 @@ hero {
 .search-divider {
     width: 1px;
     height: 40px;
-    background-color: #dcd9ce; /* Línea separadora tenue */
+    background-color: #dcd9ce;
 }
 
 .search-button-group {
@@ -290,7 +286,7 @@ hero {
 }
 
 .search-button-group button {
-    background-color: #2b4438; /* Verde oscuro del diseño original */
+    background-color: #2b4438;
     color: white;
     border: none;
     border-radius: 12px;
@@ -304,10 +300,9 @@ hero {
 }
 
 .search-button-group button:hover {
-    background-color: #1a2c24; /* Verde más oscuro al pasar el ratón */
+    background-color: #1a2c24;
 }
 
-/* Adaptación para Celulares y Tablets */
 @media (max-width: 850px) {
     .epic-search-bar {
         flex-direction: column;
@@ -320,7 +315,7 @@ hero {
         height: 1px;
     }
     .epic-search-wrapper {
-        bottom: -220px; /* Se desplaza más abajo por el aumento de altura */
+        bottom: -220px;
     }
     .search-button-group {
         margin-left: 0;
@@ -331,7 +326,7 @@ hero {
         width: 100%;
     }
     .hero {
-        margin-bottom: 240px !important; /* Compensa el espacio flotante en móvil */
+        margin-bottom: 240px !important;
     }
 }
 
@@ -348,7 +343,7 @@ hero {
 }
 
 .btn-primary {
-    background-color: #008080; /* Verde/Teal corporativo */
+    background-color: #008080;
     color: #fff;
 }
 
@@ -442,7 +437,6 @@ hero {
     line-height: 1.7;
 }
 
-/* Grid de 6 columnas (Iconos Principales) */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -483,7 +477,7 @@ hero {
    DISEÑO BARRA DE ESTADÍSTICAS VERDE
 ========================================= */
 .stats-bar-verde {
-    background-color: #004d4a; /* Verde oscuro corporativo */
+    background-color: #004d4a;
     color: #ffffff;
     border-radius: 20px;
     padding: 30px 40px;
@@ -507,7 +501,7 @@ hero {
 .stats-bar-verde .stat-item img {
     width: 65px;
     height: 65px;
-    border: 2px solid #ffffff; /* Círculo blanco alrededor del icono */
+    border: 2px solid #ffffff;
     border-radius: 50%;
     padding: 12px;
     object-fit: contain;
@@ -532,7 +526,6 @@ hero {
     opacity: 0.9;
 }
 
-/* Responsive de la sección Nosotros y Barra Verde */
 @media (max-width: 1024px) {
     .features-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 10px; }
     .feature-item:nth-child(3) { border-right: none; }
@@ -599,7 +592,7 @@ hero {
    FOOTER PREMIUM
 ========================================= */
 .footer-premium {
-    background-color: #004d4a; /* Verde oscuro corporativo */
+    background-color: #004d4a;
     color: #e0e0e0;
     padding: 70px 0 0 0;
     font-family: 'Arial', sans-serif;
@@ -625,7 +618,6 @@ hero {
     padding-bottom: 10px;
 }
 
-/* Línea decorativa debajo de los títulos */
 .footer-col h4::after {
     content: '';
     position: absolute;
@@ -633,10 +625,9 @@ hero {
     bottom: 0;
     width: 40px;
     height: 3px;
-    background-color: #00b3a6; /* Verde vibrante de contraste */
+    background-color: #00b3a6;
 }
 
-/* Columna de la Marca */
 .footer-logo {
     color: #ffffff;
     font-size: 26px;
@@ -653,7 +644,6 @@ hero {
     color: #c4d4d3;
 }
 
-/* Enlaces Rápidos */
 .footer-col ul {
     list-style: none;
     padding: 0;
@@ -673,7 +663,6 @@ hero {
     text-decoration: underline;
 }
 
-/* Columna de Contacto */
 .contacto-col p {
     display: flex;
     align-items: center;
@@ -687,7 +676,6 @@ hero {
     opacity: 0.8;
 }
 
-/* Redes Sociales */
 .social-icons {
     display: flex;
     gap: 15px;
@@ -702,9 +690,8 @@ hero {
     opacity: 1;
 }
 
-/* Barra inferior (Copyright) */
 .footer-bottom {
-    background-color: #003634; /* Un tono más oscuro para el final */
+    background-color: #003634;
     text-align: center;
     padding: 20px 0;
     font-size: 13px;
@@ -712,9 +699,6 @@ hero {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* =========================================
-   RESPONSIVE FOOTER (Móviles y Tablets)
-========================================= */
 @media (max-width: 1024px) {
     .footer-container {
         grid-template-columns: 1fr 1fr;
@@ -735,5 +719,36 @@ hero {
     }
     .social-icons {
         justify-content: center;
+    }
+}
+
+/* =========================================
+   CORRECCIONES MÓVILES (CARRUSEL Y LOGO)
+========================================= */
+@media (max-width: 768px) {
+    .logo-img {
+        max-height: 100px !important;
+    }
+
+    .featured-properties-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 15px;
+        padding-bottom: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+        grid-template-columns: none; 
+    }
+
+    .featured-properties-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .property-card {
+        flex: 0 0 85%; 
+        max-width: 85%;
+        scroll-snap-align: center;
     }
 }
